@@ -14,7 +14,7 @@ import {
   BarChart3, 
   Scale, 
   Tag, 
-  Feed, 
+  Rss, 
   PenTool, 
   TrendingUp,
   CheckCircle,
@@ -112,7 +112,7 @@ const Index = () => {
     { id: 'events', name: 'Events & Goals', icon: BarChart3, color: 'text-orange-600' },
     { id: 'legal', name: 'Legal & UX', icon: Scale, color: 'text-indigo-600' },
     { id: 'tracking', name: 'Tracking Tools', icon: Tag, color: 'text-pink-600' },
-    { id: 'feed', name: 'Product Feed', icon: Feed, color: 'text-teal-600' },
+    { id: 'feed', name: 'Product Feed', icon: Rss, color: 'text-teal-600' },
     { id: 'creative', name: 'Creative Content', icon: PenTool, color: 'text-yellow-600' },
     { id: 'analytics', name: 'Analytics', icon: TrendingUp, color: 'text-cyan-600' },
   ];
