@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -6,6 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { 
   Store, 
   ShoppingBag, 
@@ -19,7 +19,10 @@ import {
   TrendingUp,
   CheckCircle,
   AlertTriangle,
-  Info
+  Info,
+  Lightbulb,
+  DollarSign,
+  Zap
 } from 'lucide-react';
 
 interface ChecklistItem {
@@ -183,6 +186,69 @@ const Index = () => {
           <p className="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
             Comprehensive checklist to ensure your Shopify store has all necessary permissions and configurations for optimal Google Ads tracking performance.
           </p>
+          
+          {/* Why This Matters Section */}
+          <div className="grid md:grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto">
+            <Alert className="border-red-200 bg-red-50">
+              <AlertTriangle className="h-5 w-5 text-red-600" />
+              <AlertTitle className="text-red-800">Avoid Ad Account Suspension</AlertTitle>
+              <AlertDescription className="text-red-700">
+                Google strictly enforces compliance. Missing requirements can lead to ad disapproval or account suspension, losing your advertising investment.
+              </AlertDescription>
+            </Alert>
+            
+            <Alert className="border-green-200 bg-green-50">
+              <DollarSign className="h-5 w-5 text-green-600" />
+              <AlertTitle className="text-green-800">Maximize ROI & Performance</AlertTitle>
+              <AlertDescription className="text-green-700">
+                Proper tracking setup ensures accurate conversion data, enabling Google's AI to optimize your campaigns and reduce cost per acquisition.
+              </AlertDescription>
+            </Alert>
+            
+            <Alert className="border-blue-200 bg-blue-50">
+              <Zap className="h-5 w-5 text-blue-600" />
+              <AlertTitle className="text-blue-800">Enable Advanced Features</AlertTitle>
+              <AlertDescription className="text-blue-700">
+                Complete compliance unlocks Google's advanced advertising features like Smart Bidding, Enhanced Conversions, and Dynamic Remarketing.
+              </AlertDescription>
+            </Alert>
+          </div>
+
+          {/* Key Benefits */}
+          <Card className="max-w-4xl mx-auto mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center justify-center gap-2">
+                <Lightbulb className="h-6 w-6 text-yellow-600" />
+                Why Complete This Checklist?
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6 text-left">
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-lg text-gray-800">🚫 Without Proper Setup:</h4>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• Ad disapprovals and policy violations</li>
+                    <li>• Inaccurate conversion tracking</li>
+                    <li>• Higher cost per click (CPC)</li>
+                    <li>• Poor campaign performance</li>
+                    <li>• Limited access to advanced features</li>
+                    <li>• Risk of account suspension</li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-lg text-gray-800">✅ With Complete Compliance:</h4>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• Higher ad approval rates</li>
+                    <li>• Accurate performance data</li>
+                    <li>• Lower cost per acquisition (CPA)</li>
+                    <li>• Better ROAS (Return on Ad Spend)</li>
+                    <li>• Access to all Google Ads features</li>
+                    <li>• Long-term account stability</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
           
           {/* Overall Progress */}
           <Card className="max-w-2xl mx-auto">
