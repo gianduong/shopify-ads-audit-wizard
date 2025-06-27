@@ -36,6 +36,8 @@ interface ChecklistItem {
   priority: 'high' | 'medium' | 'low';
   checked: boolean;
   explanation?: string;
+  riskIfMissing?: string;
+  benefitWhenComplete?: string;
 }
 
 const Index = () => {
@@ -50,7 +52,9 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Google Ads needs to crawl and verify your website content. A password-protected store prevents Google from accessing your pages, leading to ad disapprovals and inability to track conversions properly. Public access ensures Google can verify compliance with advertising policies and track customer behavior accurately.'
+      explanation: 'Google Ads needs to crawl and verify your website content. A password-protected store prevents Google from accessing your pages, leading to ad disapprovals and inability to track conversions properly. Public access ensures Google can verify compliance with advertising policies and track customer behavior accurately.',
+      riskIfMissing: 'Immediate ad disapproval, Google cannot crawl your site for policy verification, conversion tracking completely fails',
+      benefitWhenComplete: 'Ads get approved quickly, Google can verify compliance, accurate conversion tracking and campaign optimization'
     },
     { 
       id: 'store-2', 
@@ -59,7 +63,9 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'GA4 provides essential data about your customers\' journey on your website. This data helps Google Ads optimize your campaigns by understanding which audiences convert best, what pages they visit, and how long they stay. Without GA4, you\'re essentially advertising blind, missing crucial insights that could improve your return on ad spend (ROAS).'
+      explanation: 'GA4 provides essential data about your customers\' journey on your website. This data helps Google Ads optimize your campaigns by understanding which audiences convert best, what pages they visit, and how long they stay. Without GA4, you\'re essentially advertising blind, missing crucial insights that could improve your return on ad spend (ROAS).',
+      riskIfMissing: 'No audience insights, can\'t optimize campaigns, missed retargeting opportunities, poor ROAS',
+      benefitWhenComplete: 'Detailed customer insights, better campaign optimization, effective retargeting, improved ROAS through data-driven decisions'
     },
     { 
       id: 'store-3', 
@@ -68,7 +74,9 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Connecting your Google Ads account enables conversion tracking, which is crucial for measuring campaign success. Without this connection, Google can\'t tell which ads lead to sales, making it impossible to optimize bids and budgets effectively. This connection also enables enhanced features like Smart Bidding and audience insights.'
+      explanation: 'Connecting your Google Ads account enables conversion tracking, which is crucial for measuring campaign success. Without this connection, Google can\'t tell which ads lead to sales, making it impossible to optimize bids and budgets effectively. This connection also enables enhanced features like Smart Bidding and audience insights.',
+      riskIfMissing: 'No conversion tracking, wasted ad spend, cannot use Smart Bidding, no campaign optimization',
+      benefitWhenComplete: 'Accurate conversion tracking, Smart Bidding capabilities, automated optimization, better ROI measurement'
     },
     { 
       id: 'store-4', 
@@ -77,7 +85,9 @@ const Index = () => {
       category: 'store', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Reviews build social proof and trust, which are critical for conversions. Customers tend to follow the crowd - seeing positive reviews from other buyers increases confidence and purchase likelihood. Google also favors websites with authentic user-generated content. Reviews can improve your Quality Score, leading to lower costs and better ad positions.'
+      explanation: 'Reviews build social proof and trust, which are critical for conversions. Customers tend to follow the crowd - seeing positive reviews from other buyers increases confidence and purchase likelihood. Google also favors websites with authentic user-generated content. Reviews can improve your Quality Score, leading to lower costs and better ad positions.',
+      riskIfMissing: 'Low customer trust, poor conversion rates, higher bounce rates, customers choose competitors with reviews',
+      benefitWhenComplete: 'Increased conversion rates by 15-30%, higher customer trust, better Quality Score, competitive advantage'
     },
     { 
       id: 'store-5', 
@@ -86,7 +96,9 @@ const Index = () => {
       category: 'store', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Promotions create urgency and reduce purchase friction. They\'re especially effective for first-time customers who are hesitant to buy from an unknown brand. Having promotions available allows you to test different offers in your ads and landing pages, often significantly improving conversion rates and customer acquisition costs.'
+      explanation: 'Promotions create urgency and reduce purchase friction. They\'re especially effective for first-time customers who are hesitant to buy from an unknown brand. Having promotions available allows you to test different offers in your ads and landing pages, often significantly improving conversion rates and customer acquisition costs.',
+      riskIfMissing: 'Higher cart abandonment, difficulty competing with other brands, higher customer acquisition costs',
+      benefitWhenComplete: 'Lower cart abandonment, competitive pricing advantage, ability to test different offers, improved conversion rates'
     },
     { 
       id: 'store-6', 
@@ -95,7 +107,9 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Inconsistent domain access can cause tracking issues and confuse Google\'s crawlers. When customers access your site through different URL formats, it can break conversion tracking and attribution. Proper domain setup ensures all traffic is tracked correctly and prevents potential policy violations due to redirect chains.'
+      explanation: 'Inconsistent domain access can cause tracking issues and confuse Google\'s crawlers. When customers access your site through different URL formats, it can break conversion tracking and attribution. Proper domain setup ensures all traffic is tracked correctly and prevents potential policy violations due to redirect chains.',
+      riskIfMissing: 'Broken tracking, lost conversion data, redirect errors, confused customers, policy violations',
+      benefitWhenComplete: 'Consistent tracking across all traffic sources, proper attribution, smooth user experience, policy compliance'
     },
     { 
       id: 'store-7', 
@@ -104,7 +118,9 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Transparency builds trust and meets Google\'s quality guidelines. Clear pricing, shipping costs, and product information reduce bounce rates and improve user experience. Google rewards high-quality landing pages with better Quality Scores, leading to lower costs per click and higher ad positions. Hidden fees or unclear information can lead to policy violations.'
+      explanation: 'Transparency builds trust and meets Google\'s quality guidelines. Clear pricing, shipping costs, and product information reduce bounce rates and improve user experience. Google rewards high-quality landing pages with better Quality Scores, leading to lower costs per click and higher ad positions. Hidden fees or unclear information can lead to policy violations.',
+      riskIfMissing: 'High bounce rates, policy violations, poor Quality Score, higher CPC costs, customer complaints',
+      benefitWhenComplete: 'Better Quality Score, lower CPC costs, higher ad positions, improved customer trust and conversions'
     },
     { 
       id: 'store-8', 
@@ -113,7 +129,9 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Google strictly prohibits deceptive advertising practices. Before-after images, shocking content, or emotionally manipulative visuals can result in immediate ad disapproval or account suspension. Using authentic, representative images protects your advertising account and builds genuine customer trust, leading to better long-term performance.'
+      explanation: 'Google strictly prohibits deceptive advertising practices. Before-after images, shocking content, or emotionally manipulative visuals can result in immediate ad disapproval or account suspension. Using authentic, representative images protects your advertising account and builds genuine customer trust, leading to better long-term performance.',
+      riskIfMissing: 'Immediate ad disapproval, account suspension, loss of all advertising investment, damaged brand reputation',
+      benefitWhenComplete: 'Ads approved consistently, account remains in good standing, builds authentic brand trust, long-term advertising success'
     },
     { 
       id: 'store-9', 
@@ -122,7 +140,9 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Different countries have varying advertising regulations and cultural sensitivities. Compliance prevents account suspension and ensures your ads can run in target markets. This includes language requirements, local business registration needs, and specific product restrictions that vary by region.'
+      explanation: 'Different countries have varying advertising regulations and cultural sensitivities. Compliance prevents account suspension and ensures your ads can run in target markets. This includes language requirements, local business registration needs, and specific product restrictions that vary by region.',
+      riskIfMissing: 'Account suspension in specific countries, legal issues, inability to advertise in target markets',
+      benefitWhenComplete: 'Access to all target markets, legal protection, ability to scale internationally, compliance with local laws'
     },
 
     // Product Compliance
@@ -133,7 +153,9 @@ const Index = () => {
       category: 'product', 
       priority: 'high', 
       checked: false,
-      explanation: 'Google has strict policies about what products can be advertised. Selling prohibited items can result in immediate account suspension and loss of advertising privileges. Even if your main products are allowed, having prohibited items mixed in can affect your entire account. Regular policy compliance checks protect your advertising investment.'
+      explanation: 'Google has strict policies about what products can be advertised. Selling prohibited items can result in immediate account suspension and loss of advertising privileges. Even if your main products are allowed, having prohibited items mixed in can affect your entire account. Regular policy compliance checks protect your advertising investment.',
+      riskIfMissing: 'Immediate account suspension, loss of all advertising privileges, cannot create new accounts easily',
+      benefitWhenComplete: 'Account remains active, can advertise all compliant products, protection of advertising investment'
     },
     { 
       id: 'product-2', 
@@ -142,7 +164,9 @@ const Index = () => {
       category: 'product', 
       priority: 'high', 
       checked: false,
-      explanation: 'Certain language triggers Google\'s policy filters, especially for health, beauty, or supplement products. Words like "guaranteed," "miracle," or medical claims can cause ad disapproval. Using compliant language helps your ads get approved faster and stay running consistently, protecting your campaign performance.'
+      explanation: 'Certain language triggers Google\'s policy filters, especially for health, beauty, or supplement products. Words like "guaranteed," "miracle," or medical claims can cause ad disapproval. Using compliant language helps your ads get approved faster and stay running consistently, protecting your campaign performance.',
+      riskIfMissing: 'Ads get disapproved repeatedly, account warnings accumulate, restricted advertising capabilities',
+      benefitWhenComplete: 'Ads approved quickly, consistent ad delivery, no policy warnings, full advertising capabilities'
     },
     { 
       id: 'product-3', 
@@ -151,7 +175,9 @@ const Index = () => {
       category: 'product', 
       priority: 'high', 
       checked: false,
-      explanation: 'Fake reviews violate Google\'s authenticity policies and can result in severe penalties. Google uses sophisticated detection methods to identify artificial reviews. Authentic reviews, while taking longer to accumulate, provide genuine social proof and protect your account from policy violations that could shut down your advertising entirely.'
+      explanation: 'Fake reviews violate Google\'s authenticity policies and can result in severe penalties. Google uses sophisticated detection methods to identify artificial reviews. Authentic reviews, while taking longer to accumulate, provide genuine social proof and protect your account from policy violations that could shut down your advertising entirely.',
+      riskIfMissing: 'Account suspension for policy violations, loss of customer trust if detected, penalties from review platforms',
+      benefitWhenComplete: 'Genuine social proof, protected from policy violations, authentic customer trust, long-term credibility'
     },
     { 
       id: 'product-4', 
@@ -160,7 +186,9 @@ const Index = () => {
       category: 'product', 
       priority: 'high', 
       checked: false,
-      explanation: 'Misleading banners create a poor user experience and violate Google\'s policies. False claims about discounts, limited-time offers, or product benefits can lead to ad account suspension. Honest, accurate banners build trust with customers and ensure long-term advertising account health.'
+      explanation: 'Misleading banners create a poor user experience and violate Google\'s policies. False claims about discounts, limited-time offers, or product benefits can lead to ad account suspension. Honest, accurate banners build trust with customers and ensure long-term advertising account health.',
+      riskIfMissing: 'Ad disapprovals, policy violations, customer complaints, damage to brand reputation',
+      benefitWhenComplete: 'Consistent ad approvals, customer trust, positive brand reputation, long-term account health'
     },
     { 
       id: 'product-5', 
@@ -169,7 +197,9 @@ const Index = () => {
       category: 'product', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Broken discount codes create frustrated customers and negative reviews, harming your brand reputation. They also violate Google\'s policies if advertised but non-functional. Working codes improve conversion rates, customer satisfaction, and help you deliver on advertising promises, maintaining account health and customer trust.'
+      explanation: 'Broken discount codes create frustrated customers and negative reviews, harming your brand reputation. They also violate Google\'s policies if advertised but non-functional. Working codes improve conversion rates, customer satisfaction, and help you deliver on advertising promises, maintaining account health and customer trust.',
+      riskIfMissing: 'Angry customers, negative reviews, policy violations for false advertising, lost sales',
+      benefitWhenComplete: 'Higher conversion rates, satisfied customers, positive reviews, successful promotional campaigns'
     },
 
     // Consent Mode
@@ -180,7 +210,9 @@ const Index = () => {
       category: 'consent', 
       priority: 'high', 
       checked: false,
-      explanation: 'Privacy compliance is legally required in many regions and affects your ability to track conversions. Proper consent management ensures you can collect necessary data while respecting user privacy. Without compliant consent systems, your tracking data may be incomplete, affecting campaign optimization and potentially exposing you to legal risks.'
+      explanation: 'Privacy compliance is legally required in many regions and affects your ability to track conversions. Proper consent management ensures you can collect necessary data while respecting user privacy. Without compliant consent systems, your tracking data may be incomplete, affecting campaign optimization and potentially exposing you to legal risks.',
+      riskIfMissing: 'Legal fines up to €20M (GDPR), incomplete tracking data, cannot optimize campaigns effectively',
+      benefitWhenComplete: 'Legal compliance, complete tracking data with consent, better campaign optimization, protection from fines'
     },
 
     // Google Ads Settings
@@ -191,7 +223,9 @@ const Index = () => {
       category: 'ads', 
       priority: 'high', 
       checked: false,
-      explanation: 'This is a mandatory requirement from Google that governs how customer data is handled in advertising. Not accepting these terms can prevent you from running ads entirely. Acceptance ensures your account remains compliant with Google\'s data handling policies and maintains access to advertising features.'
+      explanation: 'This is a mandatory requirement from Google that governs how customer data is handled in advertising. Not accepting these terms can prevent you from running ads entirely. Acceptance ensures your account remains compliant with Google\'s data handling policies and maintains access to advertising features.',
+      riskIfMissing: 'Cannot run any Google Ads, account suspended until terms accepted, loss of advertising capabilities',
+      benefitWhenComplete: 'Full access to Google Ads features, compliant data handling, account remains active'
     },
     { 
       id: 'ads-2', 
@@ -200,7 +234,9 @@ const Index = () => {
       category: 'ads', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Many customers see your ad but don\'t click immediately, then return later to purchase. View-through conversion tracking captures this behavior, giving you credit for these conversions and providing a more complete picture of your ad performance. This data helps Google optimize your campaigns more effectively.'
+      explanation: 'Many customers see your ad but don\'t click immediately, then return later to purchase. View-through conversion tracking captures this behavior, giving you credit for these conversions and providing a more complete picture of your ad performance. This data helps Google optimize your campaigns more effectively.',
+      riskIfMissing: 'Underreporting of ad effectiveness, missing 20-30% of attributed conversions, poor optimization',
+      benefitWhenComplete: 'Complete conversion attribution, better understanding of ad impact, improved campaign optimization'
     },
     { 
       id: 'ads-3', 
@@ -209,7 +245,9 @@ const Index = () => {
       category: 'ads', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Enhanced conversions use hashed customer data to improve conversion tracking accuracy, especially as third-party cookies become less available. This feature helps Google better understand which ads drive valuable actions, leading to improved campaign optimization and better return on investment.'
+      explanation: 'Enhanced conversions use hashed customer data to improve conversion tracking accuracy, especially as third-party cookies become less available. This feature helps Google better understand which ads drive valuable actions, leading to improved campaign optimization and better return on investment.',
+      riskIfMissing: 'Inaccurate conversion tracking, poor campaign optimization, reduced effectiveness as cookies disappear',
+      benefitWhenComplete: 'More accurate tracking, better optimization, future-proof measurement, improved ROI'
     },
     { 
       id: 'ads-4', 
@@ -218,7 +256,9 @@ const Index = () => {
       category: 'ads', 
       priority: 'medium', 
       checked: false,
-      explanation: 'This feature sends additional conversion data to Google using first-party data, improving measurement accuracy in a privacy-focused world. Better data quality leads to more effective automated bidding, audience targeting, and campaign optimization, ultimately improving your advertising performance and ROI.'
+      explanation: 'This feature sends additional conversion data to Google using first-party data, improving measurement accuracy in a privacy-focused world. Better data quality leads to more effective automated bidding, audience targeting, and campaign optimization, ultimately improving your advertising performance and ROI.',
+      riskIfMissing: 'Less accurate conversion data, suboptimal automated bidding, missed optimization opportunities',
+      benefitWhenComplete: 'Highly accurate conversion data, optimal automated bidding, better audience targeting, improved ROI'
     },
     { 
       id: 'ads-5', 
@@ -227,7 +267,9 @@ const Index = () => {
       category: 'ads', 
       priority: 'low', 
       checked: false,
-      explanation: 'Video ads often create brand awareness without immediate clicks. Engaged-view tracking captures conversions from users who watched your video ad and later converted through other channels. This provides better attribution for video campaigns and helps justify video advertising investment with more complete conversion data.'
+      explanation: 'Video ads often create brand awareness without immediate clicks. Engaged-view tracking captures conversions from users who watched your video ad and later converted through other channels. This provides better attribution for video campaigns and helps justify video advertising investment with more complete conversion data.',
+      riskIfMissing: 'Video campaigns appear less effective, undervalued video advertising, missed attribution',
+      benefitWhenComplete: 'Accurate video campaign attribution, justified video ad spend, complete view of customer journey'
     },
     { 
       id: 'ads-6', 
@@ -236,7 +278,9 @@ const Index = () => {
       category: 'ads', 
       priority: 'low', 
       checked: false,
-      explanation: 'If you have mobile apps or use app-based tools, this feature allows better tracking of cross-platform user behavior. It helps Google understand the full customer journey across web and app interactions, leading to more accurate attribution and better optimization of campaigns targeting mobile users.'
+      explanation: 'If you have mobile apps or use app-based tools, this feature allows better tracking of cross-platform user behavior. It helps Google understand the full customer journey across web and app interactions, leading to more accurate attribution and better optimization of campaigns targeting mobile users.',
+      riskIfMissing: 'Incomplete cross-platform tracking, missed mobile conversion attribution, poor mobile campaign optimization',
+      benefitWhenComplete: 'Complete cross-platform tracking, accurate mobile attribution, optimized mobile campaigns'
     },
 
     // Events & Goals
@@ -247,7 +291,9 @@ const Index = () => {
       category: 'events', 
       priority: 'high', 
       checked: false,
-      explanation: 'Clear conversion goals tell Google what success looks like for your business. Without defined goals, Google can\'t optimize your campaigns effectively. Proper goal setting enables Smart Bidding strategies, audience optimization, and performance measurement, directly impacting your campaign\'s return on investment.'
+      explanation: 'Clear conversion goals tell Google what success looks like for your business. Without defined goals, Google can\'t optimize your campaigns effectively. Proper goal setting enables Smart Bidding strategies, audience optimization, and performance measurement, directly impacting your campaign\'s return on investment.',
+      riskIfMissing: 'Campaigns optimize for wrong actions, wasted budget, poor ROI, no Smart Bidding capabilities',
+      benefitWhenComplete: 'Campaigns optimize for business goals, Smart Bidding enabled, better ROI, targeted audience optimization'
     },
     { 
       id: 'events-2', 
@@ -256,7 +302,9 @@ const Index = () => {
       category: 'events', 
       priority: 'high', 
       checked: false,
-      explanation: 'Custom events provide granular insights into customer behavior and value. Tracking first-time vs. repeat customers, different types of leads, and various engagement levels helps Google optimize for your most valuable actions. This detailed tracking leads to better campaign performance and more efficient budget allocation.'
+      explanation: 'Custom events provide granular insights into customer behavior and value. Tracking first-time vs. repeat customers, different types of leads, and various engagement levels helps Google optimize for your most valuable actions. This detailed tracking leads to better campaign performance and more efficient budget allocation.',
+      riskIfMissing: 'Cannot distinguish valuable vs. low-value conversions, poor budget allocation, suboptimal targeting',
+      benefitWhenComplete: 'Optimized for high-value conversions, better budget allocation, targeted customer acquisition strategies'
     },
     { 
       id: 'events-3', 
@@ -265,7 +313,9 @@ const Index = () => {
       category: 'events', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Custom GA4 events provide insights beyond standard e-commerce tracking. Understanding specific user behaviors, content engagement, and micro-conversions helps you optimize your entire funnel. This data feeds back into Google Ads for better audience creation and campaign optimization.'
+      explanation: 'Custom GA4 events provide insights beyond standard e-commerce tracking. Understanding specific user behaviors, content engagement, and micro-conversions helps you optimize your entire funnel. This data feeds back into Google Ads for better audience creation and campaign optimization.',
+      riskIfMissing: 'Limited insights into customer behavior, missed funnel optimization opportunities, basic audience targeting only',
+      benefitWhenComplete: 'Deep customer behavior insights, optimized sales funnel, advanced audience targeting, better campaign performance'
     },
     { 
       id: 'events-4', 
@@ -274,7 +324,9 @@ const Index = () => {
       category: 'events', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Comprehensive analytics help you understand what drives sales and customer retention. Product performance data informs which items to promote, sales analytics guide budget allocation, and buyer behavior insights help create better-targeted campaigns. This holistic view improves both advertising efficiency and business decisions.'
+      explanation: 'Comprehensive analytics help you understand what drives sales and customer retention. Product performance data informs which items to promote, sales analytics guide budget allocation, and buyer behavior insights help create better-targeted campaigns. This holistic view improves both advertising efficiency and business decisions.',
+      riskIfMissing: 'Promoting wrong products, inefficient budget allocation, missed business insights, poor product decisions',
+      benefitWhenComplete: 'Promote best-performing products, efficient budget allocation, data-driven business decisions, higher profitability'
     },
 
     // Legal & UX Requirements  
@@ -285,7 +337,9 @@ const Index = () => {
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'A privacy policy is legally required in most jurisdictions and mandatory for Google Ads approval. It builds customer trust by transparently explaining data usage. Without a proper privacy policy, your ads will be disapproved, and you may face legal issues. It\'s essential for compliance and customer confidence.'
+      explanation: 'A privacy policy is legally required in most jurisdictions and mandatory for Google Ads approval. It builds customer trust by transparently explaining data usage. Without a proper privacy policy, your ads will be disapproved, and you may face legal issues. It\'s essential for compliance and customer confidence.',
+      riskIfMissing: 'Ads disapproved immediately, legal fines, cannot collect customer data, lost customer trust',
+      benefitWhenComplete: 'Ads approved, legal compliance, customer trust, ability to collect necessary data for marketing'
     },
     { 
       id: 'legal-2', 
@@ -294,7 +348,9 @@ const Index = () => {
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'Terms of Service protect your business legally and are required for Google Ads compliance. They set clear expectations for customers, reduce disputes, and demonstrate professionalism. Clear terms help build trust and provide legal protection, while also meeting Google\'s policy requirements for advertiser approval.'
+      explanation: 'Terms of Service protect your business legally and are required for Google Ads compliance. They set clear expectations for customers, reduce disputes, and demonstrate professionalism. Clear terms help build trust and provide legal protection, while also meeting Google\'s policy requirements for advertiser approval.',
+      riskIfMissing: 'Legal disputes with customers, no protection in conflicts, ads may be disapproved, unprofessional appearance',
+      benefitWhenComplete: 'Legal protection, reduced disputes, professional appearance, Google Ads compliance, customer clarity'
     },
     { 
       id: 'legal-3', 
@@ -303,7 +359,9 @@ const Index = () => {
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'A clear return policy reduces customer anxiety about purchasing, especially from new brands. It\'s required for Google Shopping ads and builds trust that encourages conversions. Transparent policies also reduce disputes and chargebacks, protecting your payment processor relationships and business reputation.'
+      explanation: 'A clear return policy reduces customer anxiety about purchasing, especially from new brands. It\'s required for Google Shopping ads and builds trust that encourages conversions. Transparent policies also reduce disputes and chargebacks, protecting your payment processor relationships and business reputation.',
+      riskIfMissing: 'Cannot run Google Shopping ads, high cart abandonment, customer disputes, payment processor issues',
+      benefitWhenComplete: 'Access to Google Shopping, reduced cart abandonment, fewer disputes, customer confidence in purchasing'
     },
     { 
       id: 'legal-4', 
@@ -312,7 +370,9 @@ const Index = () => {
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'Hidden shipping costs are a major cause of cart abandonment and policy violations. Clear pricing information improves user experience, reduces bounce rates, and ensures Google Ads compliance. Transparent costs build trust and prevent customer complaints that could harm your business reputation.'
+      explanation: 'Hidden shipping costs are a major cause of cart abandonment and policy violations. Clear pricing information improves user experience, reduces bounce rates, and ensures Google Ads compliance. Transparent costs build trust and prevent customer complaints that could harm your business reputation.',
+      riskIfMissing: 'High cart abandonment (up to 70%), policy violations, customer complaints, damaged reputation',
+      benefitWhenComplete: 'Lower cart abandonment, policy compliance, customer trust, smooth checkout experience'
     },
     { 
       id: 'legal-5', 
@@ -321,7 +381,9 @@ const Index = () => {
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'Legitimate contact information is required for Google Ads approval and builds customer trust. It demonstrates that you\'re a real business standing behind your products. Accessible customer service also improves customer satisfaction, reduces negative reviews, and can be legally required in many jurisdictions.'
+      explanation: 'Legitimate contact information is required for Google Ads approval and builds customer trust. It demonstrates that you\'re a real business standing behind your products. Accessible customer service also improves customer satisfaction, reduces negative reviews, and can be legally required in many jurisdictions.',
+      riskIfMissing: 'Ads disapproved, low customer trust, appears unprofessional, cannot resolve customer issues',
+      benefitWhenComplete: 'Ads approved, high customer trust, professional appearance, effective customer service'
     },
     { 
       id: 'legal-6', 
@@ -330,7 +392,9 @@ const Index = () => {
       category: 'legal', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Mobile traffic often represents the majority of e-commerce visitors. A mobile-friendly site improves user experience, reduces bounce rates, and is favored by Google\'s algorithms. Poor mobile experience leads to lost sales and can negatively impact your Quality Score, increasing advertising costs.'
+      explanation: 'Mobile traffic often represents the majority of e-commerce visitors. A mobile-friendly site improves user experience, reduces bounce rates, and is favored by Google\'s algorithms. Poor mobile experience leads to lost sales and can negatively impact your Quality Score, increasing advertising costs.',
+      riskIfMissing: 'Lost mobile sales (50-70% of traffic), high bounce rates, poor Quality Score, higher advertising costs',
+      benefitWhenComplete: 'Capture mobile sales, lower bounce rates, better Quality Score, reduced advertising costs'
     },
     { 
       id: 'legal-7', 
@@ -339,7 +403,9 @@ const Index = () => {
       category: 'legal', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Page speed directly impacts conversion rates and user experience. Slow sites have higher bounce rates and lower customer satisfaction. Google considers page speed in Quality Score calculations, so faster sites get better ad positions at lower costs. Every second of delay can significantly impact sales.'
+      explanation: 'Page speed directly impacts conversion rates and user experience. Slow sites have higher bounce rates and lower customer satisfaction. Google considers page speed in Quality Score calculations, so faster sites get better ad positions at lower costs. Every second of delay can significantly impact sales.',
+      riskIfMissing: 'Lost sales (1 second delay = 7% conversion loss), high bounce rates, poor Quality Score, higher CPC',
+      benefitWhenComplete: 'Higher conversion rates, lower bounce rates, better Quality Score, lower advertising costs'
     },
     { 
       id: 'legal-8', 
@@ -348,7 +414,9 @@ const Index = () => {
       category: 'legal', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Intuitive navigation reduces friction in the customer journey, leading to higher conversion rates. Clear layouts help customers find what they\'re looking for quickly, improving user experience metrics that Google values. Confusing navigation increases bounce rates and reduces advertising effectiveness.'
+      explanation: 'Intuitive navigation reduces friction in the customer journey, leading to higher conversion rates. Clear layouts help customers find what they\'re looking for quickly, improving user experience metrics that Google values. Confusing navigation increases bounce rates and reduces advertising effectiveness.',
+      riskIfMissing: 'High bounce rates, frustrated customers, lost sales, poor user experience metrics',
+      benefitWhenComplete: 'Lower bounce rates, easy product discovery, higher conversion rates, improved user experience'
     },
 
     // Tracking Tools & Tag Manager
@@ -359,7 +427,9 @@ const Index = () => {
       category: 'tracking', 
       priority: 'high', 
       checked: false,
-      explanation: 'GTM simplifies tracking implementation and management across multiple platforms. It allows quick deployment of tracking codes without developer help, enables better data collection, and provides flexibility for testing and optimization. Proper tracking is essential for campaign optimization and ROI measurement.'
+      explanation: 'GTM simplifies tracking implementation and management across multiple platforms. It allows quick deployment of tracking codes without developer help, enables better data collection, and provides flexibility for testing and optimization. Proper tracking is essential for campaign optimization and ROI measurement.',
+      riskIfMissing: 'Difficult tracking implementation, missed tracking opportunities, reliance on developers for changes',
+      benefitWhenComplete: 'Easy tracking management, comprehensive data collection, quick implementation of new tracking'
     },
     { 
       id: 'tracking-2', 
@@ -368,7 +438,9 @@ const Index = () => {
       category: 'tracking', 
       priority: 'high', 
       checked: false,
-      explanation: 'Remarketing allows you to re-engage visitors who didn\'t convert initially. These warm audiences typically have much higher conversion rates and lower costs than cold traffic. Remarketing often provides the best ROI in Google Ads, making it essential for efficient advertising spend.'
+      explanation: 'Remarketing allows you to re-engage visitors who didn\'t convert initially. These warm audiences typically have much higher conversion rates and lower costs than cold traffic. Remarketing often provides the best ROI in Google Ads, making it essential for efficient advertising spend.',
+      riskIfMissing: 'Cannot retarget visitors, missed high-ROI opportunities, only cold traffic advertising, higher acquisition costs',
+      benefitWhenComplete: 'High-converting remarketing campaigns, lower cost per acquisition, better ROI, recovered abandoned visitors'
     },
     { 
       id: 'tracking-3', 
@@ -377,7 +449,9 @@ const Index = () => {
       category: 'tracking', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Dynamic remarketing shows specific products that visitors viewed but didn\'t purchase. This personalized approach significantly improves relevance and conversion rates compared to generic remarketing. It\'s especially powerful for e-commerce stores with multiple products, as it creates highly targeted, personalized ad experiences.'
+      explanation: 'Dynamic remarketing shows specific products that visitors viewed but didn\'t purchase. This personalized approach significantly improves relevance and conversion rates compared to generic remarketing. It\'s especially powerful for e-commerce stores with multiple products, as it creates highly targeted, personalized ad experiences.',
+      riskIfMissing: 'Generic remarketing only, lower relevance, missed personalization opportunities, lower conversion rates',
+      benefitWhenComplete: 'Personalized product ads, higher relevance, increased conversion rates, better customer experience'
     },
     { 
       id: 'tracking-4', 
@@ -386,7 +460,9 @@ const Index = () => {
       category: 'tracking', 
       priority: 'medium', 
       checked: false,
-      explanation: 'UTM parameters provide detailed insights into which campaigns, ad groups, and keywords drive the best results. This granular tracking helps optimize budget allocation, identify top-performing content, and understand customer acquisition sources. Better attribution leads to more informed advertising decisions.'
+      explanation: 'UTM parameters provide detailed insights into which campaigns, ad groups, and keywords drive the best results. This granular tracking helps optimize budget allocation, identify top-performing content, and understand customer acquisition sources. Better attribution leads to more informed advertising decisions.',
+      riskIfMissing: 'Cannot identify best-performing campaigns, poor budget allocation, missed optimization opportunities',
+      benefitWhenComplete: 'Detailed campaign insights, optimized budget allocation, better ROI measurement, informed decisions'
     },
 
     // Feed & Merchant Center
@@ -397,7 +473,9 @@ const Index = () => {
       category: 'feed', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Google Merchant Center feeds enable Shopping ads and Performance Max campaigns, which often provide excellent ROI for e-commerce. Product feeds allow your items to appear in Google Shopping results, reaching customers with high purchase intent. This expands your advertising reach beyond traditional search ads.'
+      explanation: 'Google Merchant Center feeds enable Shopping ads and Performance Max campaigns, which often provide excellent ROI for e-commerce. Product feeds allow your items to appear in Google Shopping results, reaching customers with high purchase intent. This expands your advertising reach beyond traditional search ads.',
+      riskIfMissing: 'Cannot run Shopping ads, missed high-intent traffic, limited to search ads only, reduced visibility',
+      benefitWhenComplete: 'Access to Shopping ads, high-intent traffic, increased product visibility, better ROI from Shopping campaigns'
     },
     { 
       id: 'feed-2', 
@@ -406,7 +484,9 @@ const Index = () => {
       category: 'feed', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Rejected products can\'t be advertised through Shopping campaigns, limiting your reach and potential sales. Product feed errors also signal quality issues to Google, potentially affecting your overall account health. Clean, complete product data ensures maximum advertising coverage and better campaign performance.'
+      explanation: 'Rejected products can\'t be advertised through Shopping campaigns, limiting your reach and potential sales. Product feed errors also signal quality issues to Google, potentially affecting your overall account health. Clean, complete product data ensures maximum advertising coverage and better campaign performance.',
+      riskIfMissing: 'Products cannot be advertised, reduced Shopping campaign reach, missed sales opportunities',
+      benefitWhenComplete: 'All products can be advertised, maximum reach, full Shopping campaign potential, increased sales'
     },
     { 
       id: 'feed-3', 
@@ -415,7 +495,9 @@ const Index = () => {
       category: 'feed', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Structured data helps Google understand your products better, potentially improving organic visibility and ad relevance. Rich snippets can appear in search results, increasing click-through rates. Better product understanding by Google also improves automated campaign optimization and audience targeting.'
+      explanation: 'Structured data helps Google understand your products better, potentially improving organic visibility and ad relevance. Rich snippets can appear in search results, increasing click-through rates. Better product understanding by Google also improves automated campaign optimization and audience targeting.',
+      riskIfMissing: 'Poor product understanding by Google, missed rich snippets, lower click-through rates, suboptimal targeting',
+      benefitWhenComplete: 'Better Google product understanding, rich snippets in search, higher click-through rates, improved targeting'
     },
     { 
       id: 'feed-4', 
@@ -424,7 +506,9 @@ const Index = () => {
       category: 'feed', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Mismatched product information between ads and landing pages violates Google policies and creates poor user experience. Consistency ensures customers find what they expect, improving conversion rates and preventing policy violations that could suspend your advertising account.'
+      explanation: 'Mismatched product information between ads and landing pages violates Google policies and creates poor user experience. Consistency ensures customers find what they expect, improving conversion rates and preventing policy violations that could suspend your advertising account.',
+      riskIfMissing: 'Policy violations, customer confusion, poor conversion rates, potential account suspension',
+      benefitWhenComplete: 'Policy compliance, consistent customer experience, higher conversion rates, account protection'
     },
 
     // Creative & Ad Content
@@ -435,7 +519,9 @@ const Index = () => {
       category: 'creative', 
       priority: 'high', 
       checked: false,
-      explanation: 'Unrealistic promises violate Google\'s policies and can result in immediate account suspension. Even if your product is effective, making impossible claims damages credibility and can lead to legal issues. Honest, realistic messaging builds genuine trust and ensures long-term advertising account health.'
+      explanation: 'Unrealistic promises violate Google\'s policies and can result in immediate account suspension. Even if your product is effective, making impossible claims damages credibility and can lead to legal issues. Honest, realistic messaging builds genuine trust and ensures long-term advertising account health.',
+      riskIfMissing: 'Immediate account suspension, legal issues, damaged credibility, lost customer trust',
+      benefitWhenComplete: 'Account remains active, legal protection, authentic credibility, long-term customer trust'
     },
     { 
       id: 'creative-2', 
@@ -444,7 +530,9 @@ const Index = () => {
       category: 'creative', 
       priority: 'high', 
       checked: false,
-      explanation: 'Before-after images are considered misleading by Google, especially for health and beauty products. They can result in immediate policy violations and account suspension. Using authentic, representative images protects your advertising privileges while building genuine customer trust based on realistic expectations.'
+      explanation: 'Before-after images are considered misleading by Google, especially for health and beauty products. They can result in immediate policy violations and account suspension. Using authentic, representative images protects your advertising privileges while building genuine customer trust based on realistic expectations.',
+      riskIfMissing: 'Immediate policy violations, account suspension, loss of advertising privileges, customer disappointment',
+      benefitWhenComplete: 'Policy compliance, advertising privileges protected, realistic customer expectations, authentic trust'
     },
     { 
       id: 'creative-3', 
@@ -453,7 +541,9 @@ const Index = () => {
       category: 'creative', 
       priority: 'high', 
       checked: false,
-      explanation: 'Emotionally manipulative content violates Google\'s policies and creates negative user experiences. Such tactics may get short-term attention but damage brand reputation and can lead to account suspension. Positive, authentic messaging builds lasting customer relationships and sustainable business growth.'
+      explanation: 'Emotionally manipulative content violates Google\'s policies and creates negative user experiences. Such tactics may get short-term attention but damage brand reputation and can lead to account suspension. Positive, authentic messaging builds lasting customer relationships and sustainable business growth.',
+      riskIfMissing: 'Policy violations, account suspension, damaged brand reputation, negative customer perception',
+      benefitWhenComplete: 'Policy compliance, positive brand reputation, authentic customer relationships, sustainable growth'
     },
 
     // Analytics & Attribution
@@ -464,7 +554,9 @@ const Index = () => {
       category: 'analytics', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Google Signals provides insights into cross-device user behavior, helping you understand the complete customer journey. This data improves audience targeting and attribution accuracy, especially as customers use multiple devices throughout their purchase journey. Better data leads to more effective campaign optimization.'
+      explanation: 'Google Signals provides insights into cross-device user behavior, helping you understand the complete customer journey. This data improves audience targeting and attribution accuracy, especially as customers use multiple devices throughout their purchase journey. Better data leads to more effective campaign optimization.',
+      riskIfMissing: 'Incomplete customer journey understanding, poor cross-device attribution, missed targeting opportunities',
+      benefitWhenComplete: 'Complete cross-device insights, accurate attribution, better audience targeting, improved campaign optimization'
     },
     { 
       id: 'analytics-2', 
@@ -473,7 +565,9 @@ const Index = () => {
       category: 'analytics', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Data-driven attribution provides a more accurate view of how different touchpoints contribute to conversions. Unlike last-click attribution, it gives credit to all interactions in the customer journey. This leads to better budget allocation across campaigns and more accurate measurement of advertising effectiveness.'
+      explanation: 'Data-driven attribution provides a more accurate view of how different touchpoints contribute to conversions. Unlike last-click attribution, it gives credit to all interactions in the customer journey. This leads to better budget allocation across campaigns and more accurate measurement of advertising effectiveness.',
+      riskIfMissing: 'Inaccurate attribution, poor budget allocation, undervalued campaigns, missed optimization opportunities',
+      benefitWhenComplete: 'Accurate attribution across all touchpoints, optimal budget allocation, fair campaign valuation, better optimization'
     },
     { 
       id: 'analytics-3', 
@@ -482,7 +576,9 @@ const Index = () => {
       category: 'analytics', 
       priority: 'low', 
       checked: false,
-      explanation: 'Automated reporting saves time and ensures consistent performance monitoring. Regular reports help identify trends, opportunities, and issues quickly. This enables faster optimization decisions and better campaign management, ultimately improving ROI through more responsive campaign adjustments.'
+      explanation: 'Automated reporting saves time and ensures consistent performance monitoring. Regular reports help identify trends, opportunities, and issues quickly. This enables faster optimization decisions and better campaign management, ultimately improving ROI through more responsive campaign adjustments.',
+      riskIfMissing: 'Manual reporting takes time, missed trends and opportunities, slow response to issues, inefficient management',
+      benefitWhenComplete: 'Automated reporting saves time, quick trend identification, fast issue response, efficient campaign management'
     },
     { 
       id: 'analytics-4', 
@@ -491,7 +587,9 @@ const Index = () => {
       category: 'analytics', 
       priority: 'low', 
       checked: false,
-      explanation: 'Automated alerts help you respond quickly to performance changes, preventing budget waste and missed opportunities. Quick response to issues like rising costs or dropping performance can save significant money and maintain campaign effectiveness. Proactive monitoring is key to successful campaign management.'
+      explanation: 'Automated alerts help you respond quickly to performance changes, preventing budget waste and missed opportunities. Quick response to issues like rising costs or dropping performance can save significant money and maintain campaign effectiveness. Proactive monitoring is key to successful campaign management.',
+      riskIfMissing: 'Late response to issues, budget waste, missed optimization opportunities, performance drops unnoticed',
+      benefitWhenComplete: 'Quick issue response, budget protection, proactive optimization, maintained campaign performance'
     },
   ];
 
@@ -811,9 +909,7 @@ const Index = () => {
                                                 Risk if Missing:
                                               </h5>
                                               <p className="text-sm text-red-700">
-                                                {item.priority === 'high' ? 'Account suspension, ad disapprovals, or significant performance issues' : 
-                                                 item.priority === 'medium' ? 'Reduced performance and missed optimization opportunities' : 
-                                                 'Minor performance impact but still beneficial for optimization'}
+                                                {item.riskIfMissing || 'May lead to policy violations or reduced campaign performance'}
                                               </p>
                                             </div>
                                             
@@ -823,7 +919,7 @@ const Index = () => {
                                                 Benefit when Complete:
                                               </h5>
                                               <p className="text-sm text-green-700">
-                                                Better campaign performance, improved compliance, and access to all Google Ads features
+                                                {item.benefitWhenComplete || 'Improves campaign performance and ensures compliance'}
                                               </p>
                                             </div>
                                           </div>
