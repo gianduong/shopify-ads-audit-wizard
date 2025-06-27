@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { 
   Store, 
   ShoppingBag, 
@@ -22,7 +23,9 @@ import {
   Info,
   Lightbulb,
   DollarSign,
-  Zap
+  Zap,
+  Eye,
+  HelpCircle
 } from 'lucide-react';
 
 interface ChecklistItem {
@@ -32,6 +35,7 @@ interface ChecklistItem {
   category: string;
   priority: 'high' | 'medium' | 'low';
   checked: boolean;
+  explanation?: string;
 }
 
 const Index = () => {
@@ -39,72 +43,456 @@ const Index = () => {
 
   const checklistData: ChecklistItem[] = [
     // Store Configuration
-    { id: 'store-1', title: 'Store is not password protected', description: 'Ensure store is in public mode (not locked with password)', category: 'store', priority: 'high', checked: false },
-    { id: 'store-2', title: 'Google Analytics 4 (GA4) installed', description: 'Track user behavior on the store', category: 'store', priority: 'high', checked: false },
-    { id: 'store-3', title: 'Google Ads account connected', description: 'Integrate Google Ads account to activate conversion tracking', category: 'store', priority: 'high', checked: false },
-    { id: 'store-4', title: 'Review app installed', description: 'Install apps like Judge.me, Loox to increase product credibility', category: 'store', priority: 'medium', checked: false },
-    { id: 'store-5', title: 'Discount/promotion programs available', description: 'Discount codes or free shipping to increase conversion rates', category: 'store', priority: 'medium', checked: false },
-    { id: 'store-6', title: 'Domain accessible with both www and non-www', description: 'Avoid redirect errors and tracking loss', category: 'store', priority: 'high', checked: false },
-    { id: 'store-7', title: 'Clear and transparent landing pages', description: 'Clear product descriptions, pricing, and policies', category: 'store', priority: 'high', checked: false },
-    { id: 'store-8', title: 'No shocking/deceptive images', description: 'Avoid using before-after images or emotionally manipulative photos', category: 'store', priority: 'high', checked: false },
-    { id: 'store-9', title: 'Comply with country-specific advertising policies', description: 'Legal content according to each region', category: 'store', priority: 'high', checked: false },
+    { 
+      id: 'store-1', 
+      title: 'Store is not password protected', 
+      description: 'Ensure store is in public mode (not locked with password)', 
+      category: 'store', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Google Ads needs to crawl and verify your website content. A password-protected store prevents Google from accessing your pages, leading to ad disapprovals and inability to track conversions properly. Public access ensures Google can verify compliance with advertising policies and track customer behavior accurately.'
+    },
+    { 
+      id: 'store-2', 
+      title: 'Google Analytics 4 (GA4) installed', 
+      description: 'Track user behavior on the store', 
+      category: 'store', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'GA4 provides essential data about your customers\' journey on your website. This data helps Google Ads optimize your campaigns by understanding which audiences convert best, what pages they visit, and how long they stay. Without GA4, you\'re essentially advertising blind, missing crucial insights that could improve your return on ad spend (ROAS).'
+    },
+    { 
+      id: 'store-3', 
+      title: 'Google Ads account connected', 
+      description: 'Integrate Google Ads account to activate conversion tracking', 
+      category: 'store', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Connecting your Google Ads account enables conversion tracking, which is crucial for measuring campaign success. Without this connection, Google can\'t tell which ads lead to sales, making it impossible to optimize bids and budgets effectively. This connection also enables enhanced features like Smart Bidding and audience insights.'
+    },
+    { 
+      id: 'store-4', 
+      title: 'Review app installed', 
+      description: 'Install apps like Judge.me, Loox to increase product credibility', 
+      category: 'store', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Reviews build social proof and trust, which are critical for conversions. Customers tend to follow the crowd - seeing positive reviews from other buyers increases confidence and purchase likelihood. Google also favors websites with authentic user-generated content. Reviews can improve your Quality Score, leading to lower costs and better ad positions.'
+    },
+    { 
+      id: 'store-5', 
+      title: 'Discount/promotion programs available', 
+      description: 'Discount codes or free shipping to increase conversion rates', 
+      category: 'store', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Promotions create urgency and reduce purchase friction. They\'re especially effective for first-time customers who are hesitant to buy from an unknown brand. Having promotions available allows you to test different offers in your ads and landing pages, often significantly improving conversion rates and customer acquisition costs.'
+    },
+    { 
+      id: 'store-6', 
+      title: 'Domain accessible with both www and non-www', 
+      description: 'Avoid redirect errors and tracking loss', 
+      category: 'store', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Inconsistent domain access can cause tracking issues and confuse Google\'s crawlers. When customers access your site through different URL formats, it can break conversion tracking and attribution. Proper domain setup ensures all traffic is tracked correctly and prevents potential policy violations due to redirect chains.'
+    },
+    { 
+      id: 'store-7', 
+      title: 'Clear and transparent landing pages', 
+      description: 'Clear product descriptions, pricing, and policies', 
+      category: 'store', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Transparency builds trust and meets Google\'s quality guidelines. Clear pricing, shipping costs, and product information reduce bounce rates and improve user experience. Google rewards high-quality landing pages with better Quality Scores, leading to lower costs per click and higher ad positions. Hidden fees or unclear information can lead to policy violations.'
+    },
+    { 
+      id: 'store-8', 
+      title: 'No shocking/deceptive images', 
+      description: 'Avoid using before-after images or emotionally manipulative photos', 
+      category: 'store', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Google strictly prohibits deceptive advertising practices. Before-after images, shocking content, or emotionally manipulative visuals can result in immediate ad disapproval or account suspension. Using authentic, representative images protects your advertising account and builds genuine customer trust, leading to better long-term performance.'
+    },
+    { 
+      id: 'store-9', 
+      title: 'Comply with country-specific advertising policies', 
+      description: 'Legal content according to each region', 
+      category: 'store', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Different countries have varying advertising regulations and cultural sensitivities. Compliance prevents account suspension and ensures your ads can run in target markets. This includes language requirements, local business registration needs, and specific product restrictions that vary by region.'
+    },
 
     // Product Compliance
-    { id: 'product-1', title: 'No prohibited category products', description: 'Cross-check with Google Policy', category: 'product', priority: 'high', checked: false },
-    { id: 'product-2', title: 'Avoid sensitive words for restricted products', description: 'Example: "100% guaranteed effectiveness", "absolutely safe guarantee"', category: 'product', priority: 'high', checked: false },
-    { id: 'product-3', title: 'No fake reviews', description: 'Avoid reviews created by apps or false content', category: 'product', priority: 'high', checked: false },
-    { id: 'product-4', title: 'No misleading banners', description: 'No over-advertising or false information', category: 'product', priority: 'high', checked: false },
-    { id: 'product-5', title: 'Discount codes working properly', description: 'Ensure customers can use them successfully', category: 'product', priority: 'medium', checked: false },
+    { 
+      id: 'product-1', 
+      title: 'No prohibited category products', 
+      description: 'Cross-check with Google Policy', 
+      category: 'product', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Google has strict policies about what products can be advertised. Selling prohibited items can result in immediate account suspension and loss of advertising privileges. Even if your main products are allowed, having prohibited items mixed in can affect your entire account. Regular policy compliance checks protect your advertising investment.'
+    },
+    { 
+      id: 'product-2', 
+      title: 'Avoid sensitive words for restricted products', 
+      description: 'Example: "100% guaranteed effectiveness", "absolutely safe guarantee"', 
+      category: 'product', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Certain language triggers Google\'s policy filters, especially for health, beauty, or supplement products. Words like "guaranteed," "miracle," or medical claims can cause ad disapproval. Using compliant language helps your ads get approved faster and stay running consistently, protecting your campaign performance.'
+    },
+    { 
+      id: 'product-3', 
+      title: 'No fake reviews', 
+      description: 'Avoid reviews created by apps or false content', 
+      category: 'product', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Fake reviews violate Google\'s authenticity policies and can result in severe penalties. Google uses sophisticated detection methods to identify artificial reviews. Authentic reviews, while taking longer to accumulate, provide genuine social proof and protect your account from policy violations that could shut down your advertising entirely.'
+    },
+    { 
+      id: 'product-4', 
+      title: 'No misleading banners', 
+      description: 'No over-advertising or false information', 
+      category: 'product', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Misleading banners create a poor user experience and violate Google\'s policies. False claims about discounts, limited-time offers, or product benefits can lead to ad account suspension. Honest, accurate banners build trust with customers and ensure long-term advertising account health.'
+    },
+    { 
+      id: 'product-5', 
+      title: 'Discount codes working properly', 
+      description: 'Ensure customers can use them successfully', 
+      category: 'product', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Broken discount codes create frustrated customers and negative reviews, harming your brand reputation. They also violate Google\'s policies if advertised but non-functional. Working codes improve conversion rates, customer satisfaction, and help you deliver on advertising promises, maintaining account health and customer trust.'
+    },
 
     // Consent Mode
-    { id: 'consent-1', title: 'GDPR, CCPA, LGPD compliant consent banner', description: 'Banner appears when visitors access, allows accepting or rejecting cookies', category: 'consent', priority: 'high', checked: false },
+    { 
+      id: 'consent-1', 
+      title: 'GDPR, CCPA, LGPD compliant consent banner', 
+      description: 'Banner appears when visitors access, allows accepting or rejecting cookies', 
+      category: 'consent', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Privacy compliance is legally required in many regions and affects your ability to track conversions. Proper consent management ensures you can collect necessary data while respecting user privacy. Without compliant consent systems, your tracking data may be incomplete, affecting campaign optimization and potentially exposing you to legal risks.'
+    },
 
     // Google Ads Settings
-    { id: 'ads-1', title: 'Customer Data Terms accepted (mandatory)', description: 'Required for all advertisers', category: 'ads', priority: 'high', checked: false },
-    { id: 'ads-2', title: 'View-through conversions enabled', description: 'Record conversions if users don\'t click but return later', category: 'ads', priority: 'medium', checked: false },
-    { id: 'ads-3', title: 'Enhanced conversions for leads enabled', description: 'Better tracking of customer behavior', category: 'ads', priority: 'medium', checked: false },
-    { id: 'ads-4', title: 'Enhanced conversions enabled', description: 'Improve conversion data accuracy', category: 'ads', priority: 'medium', checked: false },
-    { id: 'ads-5', title: 'Engaged-view conversions enabled', description: 'For video ads - if viewers don\'t click but convert later', category: 'ads', priority: 'low', checked: false },
-    { id: 'ads-6', title: 'App attribution sharing enabled', description: 'If using apps integrated with Google Ads', category: 'ads', priority: 'low', checked: false },
+    { 
+      id: 'ads-1', 
+      title: 'Customer Data Terms accepted (mandatory)', 
+      description: 'Required for all advertisers', 
+      category: 'ads', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'This is a mandatory requirement from Google that governs how customer data is handled in advertising. Not accepting these terms can prevent you from running ads entirely. Acceptance ensures your account remains compliant with Google\'s data handling policies and maintains access to advertising features.'
+    },
+    { 
+      id: 'ads-2', 
+      title: 'View-through conversions enabled', 
+      description: 'Record conversions if users don\'t click but return later', 
+      category: 'ads', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Many customers see your ad but don\'t click immediately, then return later to purchase. View-through conversion tracking captures this behavior, giving you credit for these conversions and providing a more complete picture of your ad performance. This data helps Google optimize your campaigns more effectively.'
+    },
+    { 
+      id: 'ads-3', 
+      title: 'Enhanced conversions for leads enabled', 
+      description: 'Better tracking of customer behavior', 
+      category: 'ads', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Enhanced conversions use hashed customer data to improve conversion tracking accuracy, especially as third-party cookies become less available. This feature helps Google better understand which ads drive valuable actions, leading to improved campaign optimization and better return on investment.'
+    },
+    { 
+      id: 'ads-4', 
+      title: 'Enhanced conversions enabled', 
+      description: 'Improve conversion data accuracy', 
+      category: 'ads', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'This feature sends additional conversion data to Google using first-party data, improving measurement accuracy in a privacy-focused world. Better data quality leads to more effective automated bidding, audience targeting, and campaign optimization, ultimately improving your advertising performance and ROI.'
+    },
+    { 
+      id: 'ads-5', 
+      title: 'Engaged-view conversions enabled', 
+      description: 'For video ads - if viewers don\'t click but convert later', 
+      category: 'ads', 
+      priority: 'low', 
+      checked: false,
+      explanation: 'Video ads often create brand awareness without immediate clicks. Engaged-view tracking captures conversions from users who watched your video ad and later converted through other channels. This provides better attribution for video campaigns and helps justify video advertising investment with more complete conversion data.'
+    },
+    { 
+      id: 'ads-6', 
+      title: 'App attribution sharing enabled', 
+      description: 'If using apps integrated with Google Ads', 
+      category: 'ads', 
+      priority: 'low', 
+      checked: false,
+      explanation: 'If you have mobile apps or use app-based tools, this feature allows better tracking of cross-platform user behavior. It helps Google understand the full customer journey across web and app interactions, leading to more accurate attribution and better optimization of campaigns targeting mobile users.'
+    },
 
-    // In-App Events & Goals
-    { id: 'events-1', title: 'Conversion goal set for campaign', description: 'Main objectives like purchases, leads...', category: 'events', priority: 'high', checked: false },
-    { id: 'events-2', title: 'Custom conversion events configured', description: 'FcPurchase, RcPurchase, FcATC, RcATC, Lead, Request A Quote, SIGN IN...', category: 'events', priority: 'high', checked: false },
-    { id: 'events-3', title: 'Customer events created for GA4 tracking', description: 'Help analyze specific behavior tracking', category: 'events', priority: 'medium', checked: false },
-    { id: 'events-4', title: 'In-app analytics utilized', description: 'Product Analytics, Sale Analytics, Buyer Analytics', category: 'events', priority: 'medium', checked: false },
+    // Events & Goals
+    { 
+      id: 'events-1', 
+      title: 'Conversion goal set for campaign', 
+      description: 'Main objectives like purchases, leads...', 
+      category: 'events', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Clear conversion goals tell Google what success looks like for your business. Without defined goals, Google can\'t optimize your campaigns effectively. Proper goal setting enables Smart Bidding strategies, audience optimization, and performance measurement, directly impacting your campaign\'s return on investment.'
+    },
+    { 
+      id: 'events-2', 
+      title: 'Custom conversion events configured', 
+      description: 'FcPurchase, RcPurchase, FcATC, RcATC, Lead, Request A Quote, SIGN IN...', 
+      category: 'events', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Custom events provide granular insights into customer behavior and value. Tracking first-time vs. repeat customers, different types of leads, and various engagement levels helps Google optimize for your most valuable actions. This detailed tracking leads to better campaign performance and more efficient budget allocation.'
+    },
+    { 
+      id: 'events-3', 
+      title: 'Customer events created for GA4 tracking', 
+      description: 'Help analyze specific behavior tracking', 
+      category: 'events', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Custom GA4 events provide insights beyond standard e-commerce tracking. Understanding specific user behaviors, content engagement, and micro-conversions helps you optimize your entire funnel. This data feeds back into Google Ads for better audience creation and campaign optimization.'
+    },
+    { 
+      id: 'events-4', 
+      title: 'In-app analytics utilized', 
+      description: 'Product Analytics, Sale Analytics, Buyer Analytics', 
+      category: 'events', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Comprehensive analytics help you understand what drives sales and customer retention. Product performance data informs which items to promote, sales analytics guide budget allocation, and buyer behavior insights help create better-targeted campaigns. This holistic view improves both advertising efficiency and business decisions.'
+    },
 
-    // Legal & UX Requirements
-    { id: 'legal-1', title: 'Privacy Policy', description: 'Mandatory privacy policy', category: 'legal', priority: 'high', checked: false },
-    { id: 'legal-2', title: 'Terms of Service', description: 'Service terms and conditions', category: 'legal', priority: 'high', checked: false },
-    { id: 'legal-3', title: 'Return & Refund Policy', description: 'Refund and exchange policy', category: 'legal', priority: 'high', checked: false },
-    { id: 'legal-4', title: 'Shipping & Payment Info', description: 'Clear shipping fees and payment methods', category: 'legal', priority: 'high', checked: false },
-    { id: 'legal-5', title: 'Complete contact page information', description: 'Real email/phone number', category: 'legal', priority: 'high', checked: false },
-    { id: 'legal-6', title: 'Mobile-friendly interface', description: 'Responsive layout', category: 'legal', priority: 'medium', checked: false },
-    { id: 'legal-7', title: 'Page load speed < 3 seconds', description: 'Use PageSpeed Insights to check', category: 'legal', priority: 'medium', checked: false },
-    { id: 'legal-8', title: 'Clear menu and layout', description: 'Easy to find products, not confusing', category: 'legal', priority: 'medium', checked: false },
+    // Legal & UX Requirements  
+    { 
+      id: 'legal-1', 
+      title: 'Privacy Policy', 
+      description: 'Mandatory privacy policy', 
+      category: 'legal', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'A privacy policy is legally required in most jurisdictions and mandatory for Google Ads approval. It builds customer trust by transparently explaining data usage. Without a proper privacy policy, your ads will be disapproved, and you may face legal issues. It\'s essential for compliance and customer confidence.'
+    },
+    { 
+      id: 'legal-2', 
+      title: 'Terms of Service', 
+      description: 'Service terms and conditions', 
+      category: 'legal', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Terms of Service protect your business legally and are required for Google Ads compliance. They set clear expectations for customers, reduce disputes, and demonstrate professionalism. Clear terms help build trust and provide legal protection, while also meeting Google\'s policy requirements for advertiser approval.'
+    },
+    { 
+      id: 'legal-3', 
+      title: 'Return & Refund Policy', 
+      description: 'Refund and exchange policy', 
+      category: 'legal', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'A clear return policy reduces customer anxiety about purchasing, especially from new brands. It\'s required for Google Shopping ads and builds trust that encourages conversions. Transparent policies also reduce disputes and chargebacks, protecting your payment processor relationships and business reputation.'
+    },
+    { 
+      id: 'legal-4', 
+      title: 'Shipping & Payment Info', 
+      description: 'Clear shipping fees and payment methods', 
+      category: 'legal', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Hidden shipping costs are a major cause of cart abandonment and policy violations. Clear pricing information improves user experience, reduces bounce rates, and ensures Google Ads compliance. Transparent costs build trust and prevent customer complaints that could harm your business reputation.'
+    },
+    { 
+      id: 'legal-5', 
+      title: 'Complete contact page information', 
+      description: 'Real email/phone number', 
+      category: 'legal', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Legitimate contact information is required for Google Ads approval and builds customer trust. It demonstrates that you\'re a real business standing behind your products. Accessible customer service also improves customer satisfaction, reduces negative reviews, and can be legally required in many jurisdictions.'
+    },
+    { 
+      id: 'legal-6', 
+      title: 'Mobile-friendly interface', 
+      description: 'Responsive layout', 
+      category: 'legal', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Mobile traffic often represents the majority of e-commerce visitors. A mobile-friendly site improves user experience, reduces bounce rates, and is favored by Google\'s algorithms. Poor mobile experience leads to lost sales and can negatively impact your Quality Score, increasing advertising costs.'
+    },
+    { 
+      id: 'legal-7', 
+      title: 'Page load speed < 3 seconds', 
+      description: 'Use PageSpeed Insights to check', 
+      category: 'legal', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Page speed directly impacts conversion rates and user experience. Slow sites have higher bounce rates and lower customer satisfaction. Google considers page speed in Quality Score calculations, so faster sites get better ad positions at lower costs. Every second of delay can significantly impact sales.'
+    },
+    { 
+      id: 'legal-8', 
+      title: 'Clear menu and layout', 
+      description: 'Easy to find products, not confusing', 
+      category: 'legal', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Intuitive navigation reduces friction in the customer journey, leading to higher conversion rates. Clear layouts help customers find what they\'re looking for quickly, improving user experience metrics that Google values. Confusing navigation increases bounce rates and reduces advertising effectiveness.'
+    },
 
     // Tracking Tools & Tag Manager
-    { id: 'tracking-1', title: 'Google Tag Manager (GTM) installed', description: 'Easy to attach tracking from multiple platforms', category: 'tracking', priority: 'high', checked: false },
-    { id: 'tracking-2', title: 'Google Ads Remarketing Tag', description: 'To retarget customers', category: 'tracking', priority: 'high', checked: false },
-    { id: 'tracking-3', title: 'Dynamic Remarketing enabled', description: 'If running ads for multiple products', category: 'tracking', priority: 'medium', checked: false },
-    { id: 'tracking-4', title: 'UTM tracking attached', description: 'Easy to analyze effectiveness from multiple campaigns', category: 'tracking', priority: 'medium', checked: false },
+    { 
+      id: 'tracking-1', 
+      title: 'Google Tag Manager (GTM) installed', 
+      description: 'Easy to attach tracking from multiple platforms', 
+      category: 'tracking', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'GTM simplifies tracking implementation and management across multiple platforms. It allows quick deployment of tracking codes without developer help, enables better data collection, and provides flexibility for testing and optimization. Proper tracking is essential for campaign optimization and ROI measurement.'
+    },
+    { 
+      id: 'tracking-2', 
+      title: 'Google Ads Remarketing Tag', 
+      description: 'To retarget customers', 
+      category: 'tracking', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Remarketing allows you to re-engage visitors who didn\'t convert initially. These warm audiences typically have much higher conversion rates and lower costs than cold traffic. Remarketing often provides the best ROI in Google Ads, making it essential for efficient advertising spend.'
+    },
+    { 
+      id: 'tracking-3', 
+      title: 'Dynamic Remarketing enabled', 
+      description: 'If running ads for multiple products', 
+      category: 'tracking', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Dynamic remarketing shows specific products that visitors viewed but didn\'t purchase. This personalized approach significantly improves relevance and conversion rates compared to generic remarketing. It\'s especially powerful for e-commerce stores with multiple products, as it creates highly targeted, personalized ad experiences.'
+    },
+    { 
+      id: 'tracking-4', 
+      title: 'UTM tracking attached', 
+      description: 'Easy to analyze effectiveness from multiple campaigns', 
+      category: 'tracking', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'UTM parameters provide detailed insights into which campaigns, ad groups, and keywords drive the best results. This granular tracking helps optimize budget allocation, identify top-performing content, and understand customer acquisition sources. Better attribution leads to more informed advertising decisions.'
+    },
 
     // Feed & Merchant Center
-    { id: 'feed-1', title: 'Google Merchant Feed created', description: 'Via app or API', category: 'feed', priority: 'medium', checked: false },
-    { id: 'feed-2', title: 'No rejected products', description: 'Due to missing GTIN, price, wrong description...', category: 'feed', priority: 'medium', checked: false },
-    { id: 'feed-3', title: 'Product schema (JSON-LD) attached', description: 'Help Google crawl better', category: 'feed', priority: 'medium', checked: false },
-    { id: 'feed-4', title: 'Landing page matches feed content', description: 'No information discrepancy', category: 'feed', priority: 'medium', checked: false },
+    { 
+      id: 'feed-1', 
+      title: 'Google Merchant Feed created', 
+      description: 'Via app or API', 
+      category: 'feed', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Google Merchant Center feeds enable Shopping ads and Performance Max campaigns, which often provide excellent ROI for e-commerce. Product feeds allow your items to appear in Google Shopping results, reaching customers with high purchase intent. This expands your advertising reach beyond traditional search ads.'
+    },
+    { 
+      id: 'feed-2', 
+      title: 'No rejected products', 
+      description: 'Due to missing GTIN, price, wrong description...', 
+      category: 'feed', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Rejected products can\'t be advertised through Shopping campaigns, limiting your reach and potential sales. Product feed errors also signal quality issues to Google, potentially affecting your overall account health. Clean, complete product data ensures maximum advertising coverage and better campaign performance.'
+    },
+    { 
+      id: 'feed-3', 
+      title: 'Product schema (JSON-LD) attached', 
+      description: 'Help Google crawl better', 
+      category: 'feed', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Structured data helps Google understand your products better, potentially improving organic visibility and ad relevance. Rich snippets can appear in search results, increasing click-through rates. Better product understanding by Google also improves automated campaign optimization and audience targeting.'
+    },
+    { 
+      id: 'feed-4', 
+      title: 'Landing page matches feed content', 
+      description: 'No information discrepancy', 
+      category: 'feed', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Mismatched product information between ads and landing pages violates Google policies and creates poor user experience. Consistency ensures customers find what they expect, improving conversion rates and preventing policy violations that could suspend your advertising account.'
+    },
 
     // Creative & Ad Content
-    { id: 'creative-1', title: 'No fraudulent commitment language', description: 'Example: "guaranteed 10kg loss after 1 week"', category: 'creative', priority: 'high', checked: false },
-    { id: 'creative-2', title: 'No before-after images', description: 'Violates misleading illustration policy', category: 'creative', priority: 'high', checked: false },
-    { id: 'creative-3', title: 'No emotional manipulation', description: 'Avoid shocking images', category: 'creative', priority: 'high', checked: false },
+    { 
+      id: 'creative-1', 
+      title: 'No fraudulent commitment language', 
+      description: 'Example: "guaranteed 10kg loss after 1 week"', 
+      category: 'creative', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Unrealistic promises violate Google\'s policies and can result in immediate account suspension. Even if your product is effective, making impossible claims damages credibility and can lead to legal issues. Honest, realistic messaging builds genuine trust and ensures long-term advertising account health.'
+    },
+    { 
+      id: 'creative-2', 
+      title: 'No before-after images', 
+      description: 'Violates misleading illustration policy', 
+      category: 'creative', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Before-after images are considered misleading by Google, especially for health and beauty products. They can result in immediate policy violations and account suspension. Using authentic, representative images protects your advertising privileges while building genuine customer trust based on realistic expectations.'
+    },
+    { 
+      id: 'creative-3', 
+      title: 'No emotional manipulation', 
+      description: 'Avoid shocking images', 
+      category: 'creative', 
+      priority: 'high', 
+      checked: false,
+      explanation: 'Emotionally manipulative content violates Google\'s policies and creates negative user experiences. Such tactics may get short-term attention but damage brand reputation and can lead to account suspension. Positive, authentic messaging builds lasting customer relationships and sustainable business growth.'
+    },
 
     // Analytics & Attribution
-    { id: 'analytics-1', title: 'Google Signals enabled in GA4', description: 'To collect cross-device data', category: 'analytics', priority: 'medium', checked: false },
-    { id: 'analytics-2', title: 'Data-driven attribution model used', description: 'Instead of last click', category: 'analytics', priority: 'medium', checked: false },
-    { id: 'analytics-3', title: 'Reports created with Looker Studio / Google Sheets', description: 'Automate performance tracking', category: 'analytics', priority: 'low', checked: false },
-    { id: 'analytics-4', title: 'Alerts set up', description: 'When CPC is unusually high or ROAS decreases', category: 'analytics', priority: 'low', checked: false },
+    { 
+      id: 'analytics-1', 
+      title: 'Google Signals enabled in GA4', 
+      description: 'To collect cross-device data', 
+      category: 'analytics', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Google Signals provides insights into cross-device user behavior, helping you understand the complete customer journey. This data improves audience targeting and attribution accuracy, especially as customers use multiple devices throughout their purchase journey. Better data leads to more effective campaign optimization.'
+    },
+    { 
+      id: 'analytics-2', 
+      title: 'Data-driven attribution model used', 
+      description: 'Instead of last click', 
+      category: 'analytics', 
+      priority: 'medium', 
+      checked: false,
+      explanation: 'Data-driven attribution provides a more accurate view of how different touchpoints contribute to conversions. Unlike last-click attribution, it gives credit to all interactions in the customer journey. This leads to better budget allocation across campaigns and more accurate measurement of advertising effectiveness.'
+    },
+    { 
+      id: 'analytics-3', 
+      title: 'Reports created with Looker Studio / Google Sheets', 
+      description: 'Automate performance tracking', 
+      category: 'analytics', 
+      priority: 'low', 
+      checked: false,
+      explanation: 'Automated reporting saves time and ensures consistent performance monitoring. Regular reports help identify trends, opportunities, and issues quickly. This enables faster optimization decisions and better campaign management, ultimately improving ROI through more responsive campaign adjustments.'
+    },
+    { 
+      id: 'analytics-4', 
+      title: 'Alerts set up', 
+      description: 'When CPC is unusually high or ROAS decreases', 
+      category: 'analytics', 
+      priority: 'low', 
+      checked: false,
+      explanation: 'Automated alerts help you respond quickly to performance changes, preventing budget waste and missed opportunities. Quick response to issues like rising costs or dropping performance can save significant money and maintain campaign effectiveness. Proactive monitoring is key to successful campaign management.'
+    },
   ];
 
   const categories = [
@@ -388,12 +776,68 @@ const Index = () => {
                                   <p className="text-sm text-gray-600">
                                     {item.description}
                                   </p>
-                                  {isChecked && (
-                                    <div className="flex items-center gap-1 text-green-600">
-                                      <CheckCircle className="h-4 w-4" />
-                                      <span className="text-xs font-medium">Completed</span>
-                                    </div>
-                                  )}
+                                  
+                                  {/* View More Button with Dialog */}
+                                  <div className="flex items-center justify-between">
+                                    <Dialog>
+                                      <DialogTrigger asChild>
+                                        <Button variant="ghost" size="sm" className="h-8 px-2 text-blue-600 hover:text-blue-800">
+                                          <HelpCircle className="h-3 w-3 mr-1" />
+                                          View More
+                                        </Button>
+                                      </DialogTrigger>
+                                      <DialogContent className="max-w-2xl">
+                                        <DialogHeader>
+                                          <DialogTitle className="flex items-center gap-2">
+                                            <HelpCircle className="h-5 w-5 text-blue-600" />
+                                            {item.title}
+                                          </DialogTitle>
+                                          <DialogDescription>
+                                            Understanding why this requirement matters for your Google Ads success
+                                          </DialogDescription>
+                                        </DialogHeader>
+                                        <div className="space-y-4">
+                                          <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                            <h4 className="font-semibold text-blue-900 mb-2">Why This Matters:</h4>
+                                            <p className="text-blue-800 leading-relaxed">
+                                              {item.explanation || 'This requirement helps ensure your Google Ads campaigns run smoothly and comply with Google\'s policies.'}
+                                            </p>
+                                          </div>
+                                          
+                                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="p-3 bg-red-50 rounded-lg">
+                                              <h5 className="font-medium text-red-800 mb-1 flex items-center gap-1">
+                                                <AlertTriangle className="h-4 w-4" />
+                                                Risk if Missing:
+                                              </h5>
+                                              <p className="text-sm text-red-700">
+                                                {item.priority === 'high' ? 'Account suspension, ad disapprovals, or significant performance issues' : 
+                                                 item.priority === 'medium' ? 'Reduced performance and missed optimization opportunities' : 
+                                                 'Minor performance impact but still beneficial for optimization'}
+                                              </p>
+                                            </div>
+                                            
+                                            <div className="p-3 bg-green-50 rounded-lg">
+                                              <h5 className="font-medium text-green-800 mb-1 flex items-center gap-1">
+                                                <CheckCircle className="h-4 w-4" />
+                                                Benefit when Complete:
+                                              </h5>
+                                              <p className="text-sm text-green-700">
+                                                Better campaign performance, improved compliance, and access to all Google Ads features
+                                              </p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </DialogContent>
+                                    </Dialog>
+                                    
+                                    {isChecked && (
+                                      <div className="flex items-center gap-1 text-green-600">
+                                        <CheckCircle className="h-4 w-4" />
+                                        <span className="text-xs font-medium">Completed</span>
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
                             </CardContent>
