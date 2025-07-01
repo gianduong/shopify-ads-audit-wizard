@@ -594,15 +594,15 @@ const Index = () => {
   ];
 
   const categories = [
-    { id: 'store', name: 'Store Configuration', icon: Store, color: 'text-blue-600' },
-    { id: 'product', name: 'Product Compliance', icon: ShoppingBag, color: 'text-green-600' },
-    { id: 'consent', name: 'Consent Mode', icon: Shield, color: 'text-purple-600' },
-    { id: 'ads', name: 'Google Ads Settings', icon: Target, color: 'text-red-600' },
-    { id: 'events', name: 'Events & Goals', icon: BarChart3, color: 'text-orange-600' },
+    { id: 'store', name: 'Store Setup', icon: Store, color: 'text-blue-600' },
+    { id: 'product', name: 'Products', icon: ShoppingBag, color: 'text-green-600' },
+    { id: 'consent', name: 'Privacy', icon: Shield, color: 'text-purple-600' },
+    { id: 'ads', name: 'Ads Setup', icon: Target, color: 'text-red-600' },
+    { id: 'events', name: 'Tracking', icon: BarChart3, color: 'text-orange-600' },
     { id: 'legal', name: 'Legal & UX', icon: Scale, color: 'text-indigo-600' },
-    { id: 'tracking', name: 'Tracking Tools', icon: Tag, color: 'text-pink-600' },
-    { id: 'feed', name: 'Product Feed', icon: Rss, color: 'text-teal-600' },
-    { id: 'creative', name: 'Creative Content', icon: PenTool, color: 'text-yellow-600' },
+    { id: 'tracking', name: 'Tools', icon: Tag, color: 'text-pink-600' },
+    { id: 'feed', name: 'Feed', icon: Rss, color: 'text-teal-600' },
+    { id: 'creative', name: 'Content', icon: PenTool, color: 'text-yellow-600' },
     { id: 'analytics', name: 'Analytics', icon: TrendingUp, color: 'text-cyan-600' },
   ];
 
@@ -663,134 +663,54 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
-        {/* Header */}
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        {/* Simplified Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Shopify Google Ads Tracking Compliance Checker
+          <h1 className="text-3xl font-bold text-gray-900 mb-3">
+            Google Ads Compliance Checker
           </h1>
-          <p className="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
-            Comprehensive checklist to ensure your Shopify store has all necessary permissions and configurations for optimal Google Ads tracking performance.
+          <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+            Đảm bảo Shopify store của bạn tuân thủ đầy đủ để chạy Google Ads hiệu quả và tránh bị từ chối quảng cáo
           </p>
           
-          {/* Why This Matters Section */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8 max-w-5xl mx-auto">
-            <Alert className="border-red-200 bg-red-50">
-              <AlertTriangle className="h-5 w-5 text-red-600" />
-              <AlertTitle className="text-red-800">Avoid Ad Account Suspension</AlertTitle>
-              <AlertDescription className="text-red-700">
-                Google strictly enforces compliance. Missing requirements can lead to ad disapproval or account suspension, losing your advertising investment.
-              </AlertDescription>
-            </Alert>
+          {/* Compact Benefits */}
+          <div className="grid md:grid-cols-3 gap-4 mb-6 max-w-4xl mx-auto">
+            <div className="p-4 bg-red-50 rounded-lg border border-red-200">
+              <AlertTriangle className="h-5 w-5 text-red-600 mx-auto mb-2" />
+              <div className="text-sm font-medium text-red-800">Tránh bị từ chối ads</div>
+            </div>
             
-            <Alert className="border-green-200 bg-green-50">
-              <DollarSign className="h-5 w-5 text-green-600" />
-              <AlertTitle className="text-green-800">Maximize ROI & Performance</AlertTitle>
-              <AlertDescription className="text-green-700">
-                Proper tracking setup ensures accurate conversion data, enabling Google's AI to optimize your campaigns and reduce cost per acquisition.
-              </AlertDescription>
-            </Alert>
+            <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+              <DollarSign className="h-5 w-5 text-green-600 mx-auto mb-2" />
+              <div className="text-sm font-medium text-green-800">Tối ưu ROI & hiệu suất</div>
+            </div>
             
-            <Alert className="border-blue-200 bg-blue-50">
-              <Zap className="h-5 w-5 text-blue-600" />
-              <AlertTitle className="text-blue-800">Enable Advanced Features</AlertTitle>
-              <AlertDescription className="text-blue-700">
-                Complete compliance unlocks Google's advanced advertising features like Smart Bidding, Enhanced Conversions, and Dynamic Remarketing.
-              </AlertDescription>
-            </Alert>
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <Zap className="h-5 w-5 text-blue-600 mx-auto mb-2" />
+              <div className="text-sm font-medium text-blue-800">Mở khóa tính năng nâng cao</div>
+            </div>
           </div>
-
-          {/* Key Benefits */}
-          <Card className="max-w-4xl mx-auto mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center justify-center gap-2">
-                <Lightbulb className="h-6 w-6 text-yellow-600" />
-                Why Complete This Checklist?
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6 text-left">
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-lg text-gray-800">🚫 Without Proper Setup:</h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Ad disapprovals and policy violations</li>
-                    <li>• Inaccurate conversion tracking</li>
-                    <li>• Higher cost per click (CPC)</li>
-                    <li>• Poor campaign performance</li>
-                    <li>• Limited access to advanced features</li>
-                    <li>• Risk of account suspension</li>
-                  </ul>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-lg text-gray-800">✅ With Complete Compliance:</h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Higher ad approval rates</li>
-                    <li>• Accurate performance data</li>
-                    <li>• Lower cost per acquisition (CPA)</li>
-                    <li>• Better ROAS (Return on Ad Spend)</li>
-                    <li>• Access to all Google Ads features</li>
-                    <li>• Long-term account stability</li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
           
-          {/* Overall Progress */}
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <CardTitle className="flex items-center justify-center gap-2">
-                <TrendingUp className="h-6 w-6" />
-                Overall Compliance Progress
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold">{overallStats.percentage}%</span>
-                  <span className="text-gray-600">{overallStats.checkedCount} of {overallStats.totalCount} completed</span>
-                </div>
-                <Progress value={overallStats.percentage} className="h-3" />
-                
-                {/* Priority Breakdown */}
-                <div className="grid grid-cols-3 gap-4 mt-6">
-                  <div className="text-center">
-                    <Badge variant="destructive" className="mb-2">High Priority</Badge>
-                    <div className="text-sm text-gray-600">
-                      {priorityStats.high.checked}/{priorityStats.high.total}
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <Badge variant="secondary" className="mb-2">Medium Priority</Badge>
-                    <div className="text-sm text-gray-600">
-                      {priorityStats.medium.checked}/{priorityStats.medium.total}
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <Badge variant="outline" className="mb-2">Low Priority</Badge>
-                    <div className="text-sm text-gray-600">
-                      {priorityStats.low.checked}/{priorityStats.low.total}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-4 justify-center mt-6">
-                  <Button onClick={checkAll} variant="default">
-                    Check All Items
-                  </Button>
-                  <Button onClick={resetAll} variant="outline">
-                    Reset All
-                  </Button>
-                </div>
+          {/* Compact Progress */}
+          <Card className="max-w-lg mx-auto">
+            <CardContent className="p-4">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-xl font-bold">{overallStats.percentage}%</span>
+                <span className="text-sm text-gray-600">{overallStats.checkedCount}/{overallStats.totalCount} hoàn thành</span>
+              </div>
+              <Progress value={overallStats.percentage} className="h-2 mb-3" />
+              
+              <div className="flex gap-2 justify-center">
+                <Button onClick={checkAll} size="sm">Chọn tất cả</Button>
+                <Button onClick={resetAll} variant="outline" size="sm">Reset</Button>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Category Tabs */}
+        {/* Simplified Category Tabs */}
         <Tabs defaultValue="store" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 lg:grid-cols-10 mb-8">
+          <TabsList className="grid w-full grid-cols-5 lg:grid-cols-10 mb-6 h-auto">
             {categories.map((category) => {
               const stats = getCompletionStats(category.id);
               const Icon = category.icon;
@@ -798,11 +718,11 @@ const Index = () => {
                 <TabsTrigger 
                   key={category.id} 
                   value={category.id}
-                  className="flex flex-col items-center gap-1 p-3 h-auto"
+                  className="flex flex-col items-center gap-1 p-2 h-auto text-xs"
                 >
-                  <Icon className={`h-4 w-4 ${category.color}`} />
-                  <span className="text-xs">{category.name}</span>
-                  <Badge variant="outline" className="text-xs">
+                  <Icon className={`h-3 w-3 ${category.color}`} />
+                  <span>{category.name}</span>
+                  <Badge variant="outline" className="text-xs px-1">
                     {stats.checkedCount}/{stats.totalCount}
                   </Badge>
                 </TabsTrigger>
@@ -818,126 +738,112 @@ const Index = () => {
             return (
               <TabsContent key={category.id} value={category.id}>
                 <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Icon className={`h-6 w-6 ${category.color}`} />
-                      {category.name}
-                      <Badge variant="outline">
-                        {stats.checkedCount}/{stats.totalCount} completed
-                      </Badge>
-                    </CardTitle>
-                    <CardDescription>
-                      Complete all items in this category to ensure compliance
-                    </CardDescription>
-                    <Progress value={stats.percentage} className="h-2 mt-2" />
+                  <CardHeader className="pb-4">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="flex items-center gap-2">
+                        <Icon className={`h-5 w-5 ${category.color}`} />
+                        {category.name}
+                      </CardTitle>
+                      <Badge variant="outline">{stats.checkedCount}/{stats.totalCount}</Badge>
+                    </div>
+                    <Progress value={stats.percentage} className="h-1" />
                   </CardHeader>
+                  
                   <CardContent>
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {/* Compact List Layout */}
+                    <div className="space-y-3">
                       {categoryItems.map((item) => {
                         const isChecked = checkedItems[item.id] || false;
-                        const priorityColors = {
-                          high: 'border-red-200 bg-red-50',
-                          medium: 'border-yellow-200 bg-yellow-50',
-                          low: 'border-green-200 bg-green-50'
-                        };
                         
                         return (
-                          <Card 
+                          <div 
                             key={item.id} 
-                            className={`transition-all duration-200 hover:shadow-md ${
-                              isChecked ? 'border-green-300 bg-green-50' : priorityColors[item.priority]
+                            className={`flex items-center gap-3 p-3 rounded-lg border transition-all ${
+                              isChecked 
+                                ? 'bg-green-50 border-green-200' 
+                                : item.priority === 'high' 
+                                  ? 'bg-red-50 border-red-200' 
+                                  : 'bg-white border-gray-200 hover:border-gray-300'
                             }`}
                           >
-                            <CardContent className="p-4">
-                              <div className="flex items-start gap-3">
-                                <Checkbox
-                                  id={item.id}
-                                  checked={isChecked}
-                                  onCheckedChange={(checked) => handleCheckChange(item.id, checked as boolean)}
-                                  className="mt-1"
-                                />
-                                <div className="flex-1 space-y-2">
-                                  <div className="flex items-center gap-2">
-                                    <label 
-                                      htmlFor={item.id}
-                                      className={`font-medium cursor-pointer ${isChecked ? 'line-through text-gray-500' : ''}`}
-                                    >
-                                      {item.title}
-                                    </label>
-                                    <Badge 
-                                      variant={item.priority === 'high' ? 'destructive' : item.priority === 'medium' ? 'secondary' : 'outline'}
-                                      className="text-xs"
-                                    >
-                                      {item.priority}
-                                    </Badge>
-                                  </div>
-                                  <p className="text-sm text-gray-600">
-                                    {item.description}
-                                  </p>
-                                  
-                                  {/* View More Button with Dialog */}
-                                  <div className="flex items-center justify-between">
-                                    <Dialog>
-                                      <DialogTrigger asChild>
-                                        <Button variant="ghost" size="sm" className="h-8 px-2 text-blue-600 hover:text-blue-800">
-                                          <HelpCircle className="h-3 w-3 mr-1" />
-                                          View More
-                                        </Button>
-                                      </DialogTrigger>
-                                      <DialogContent className="max-w-2xl">
-                                        <DialogHeader>
-                                          <DialogTitle className="flex items-center gap-2">
-                                            <HelpCircle className="h-5 w-5 text-blue-600" />
-                                            {item.title}
-                                          </DialogTitle>
-                                          <DialogDescription>
-                                            Understanding why this requirement matters for your Google Ads success
-                                          </DialogDescription>
-                                        </DialogHeader>
-                                        <div className="space-y-4">
-                                          <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                                            <h4 className="font-semibold text-blue-900 mb-2">Why This Matters:</h4>
-                                            <p className="text-blue-800 leading-relaxed">
-                                              {item.explanation || 'This requirement helps ensure your Google Ads campaigns run smoothly and comply with Google\'s policies.'}
-                                            </p>
-                                          </div>
-                                          
-                                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <div className="p-3 bg-red-50 rounded-lg">
-                                              <h5 className="font-medium text-red-800 mb-1 flex items-center gap-1">
-                                                <AlertTriangle className="h-4 w-4" />
-                                                Risk if Missing:
-                                              </h5>
-                                              <p className="text-sm text-red-700">
-                                                {item.riskIfMissing || 'May lead to policy violations or reduced campaign performance'}
-                                              </p>
-                                            </div>
-                                            
-                                            <div className="p-3 bg-green-50 rounded-lg">
-                                              <h5 className="font-medium text-green-800 mb-1 flex items-center gap-1">
-                                                <CheckCircle className="h-4 w-4" />
-                                                Benefit when Complete:
-                                              </h5>
-                                              <p className="text-sm text-green-700">
-                                                {item.benefitWhenComplete || 'Improves campaign performance and ensures compliance'}
-                                              </p>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </DialogContent>
-                                    </Dialog>
-                                    
-                                    {isChecked && (
-                                      <div className="flex items-center gap-1 text-green-600">
-                                        <CheckCircle className="h-4 w-4" />
-                                        <span className="text-xs font-medium">Completed</span>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
+                            <Checkbox
+                              id={item.id}
+                              checked={isChecked}
+                              onCheckedChange={(checked) => handleCheckChange(item.id, checked as boolean)}
+                            />
+                            
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <label 
+                                  htmlFor={item.id}
+                                  className={`font-medium cursor-pointer text-sm ${isChecked ? 'line-through text-gray-500' : ''}`}
+                                >
+                                  {item.title}
+                                </label>
+                                <Badge 
+                                  variant={item.priority === 'high' ? 'destructive' : item.priority === 'medium' ? 'secondary' : 'outline'}
+                                  className="text-xs px-1 py-0"
+                                >
+                                  {item.priority === 'high' ? 'Cao' : item.priority === 'medium' ? 'TB' : 'Thấp'}
+                                </Badge>
                               </div>
-                            </CardContent>
-                          </Card>
+                              <p className="text-xs text-gray-600 line-clamp-2">
+                                {item.description}
+                              </p>
+                            </div>
+                            
+                            <div className="flex items-center gap-2">
+                              {isChecked && (
+                                <CheckCircle className="h-4 w-4 text-green-600" />
+                              )}
+                              
+                              <Dialog>
+                                <DialogTrigger asChild>
+                                  <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
+                                    <HelpCircle className="h-3 w-3" />
+                                  </Button>
+                                </DialogTrigger>
+                                <DialogContent className="max-w-xl">
+                                  <DialogHeader>
+                                    <DialogTitle className="flex items-center gap-2 text-base">
+                                      <HelpCircle className="h-4 w-4 text-blue-600" />
+                                      {item.title}
+                                    </DialogTitle>
+                                  </DialogHeader>
+                                  <div className="space-y-3 text-sm">
+                                    <div className="p-3 bg-blue-50 rounded-lg">
+                                      <h4 className="font-medium text-blue-900 mb-1">Tại sao quan trọng:</h4>
+                                      <p className="text-blue-800 text-sm">
+                                        {item.explanation || 'This requirement helps ensure your Google Ads campaigns run smoothly and comply with Google\'s policies.'}
+                                      </p>
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-1 gap-3">
+                                      <div className="p-3 bg-red-50 rounded-lg">
+                                        <h5 className="font-medium text-red-800 mb-1 flex items-center gap-1">
+                                          <AlertTriangle className="h-3 w-3" />
+                                          Rủi ro nếu thiếu:
+                                        </h5>
+                                        <p className="text-xs text-red-700">
+                                          {item.riskIfMissing || 'May lead to policy violations or reduced campaign performance'}
+                                        </p>
+                                      </div>
+                                      
+                                      <div className="p-3 bg-green-50 rounded-lg">
+                                        <h5 className="font-medium text-green-800 mb-1 flex items-center gap-1">
+                                          <CheckCircle className="h-3 w-3" />
+                                          Lợi ích khi hoàn thành:
+                                        </h5>
+                                        <p className="text-xs text-green-700">
+                                          {item.benefitWhenComplete || 'Improves campaign performance and ensures compliance'}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </DialogContent>
+                              </Dialog>
+                            </div>
+                          </div>
                         );
                       })}
                     </div>
@@ -947,48 +853,6 @@ const Index = () => {
             );
           })}
         </Tabs>
-
-        {/* Summary Footer */}
-        <Card className="mt-8">
-          <CardContent className="p-6">
-            <div className="text-center">
-              <h3 className="text-lg font-semibold mb-4">Compliance Summary</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="flex items-center justify-center gap-2">
-                  {overallStats.percentage >= 80 ? (
-                    <CheckCircle className="h-6 w-6 text-green-600" />
-                  ) : overallStats.percentage >= 50 ? (
-                    <AlertTriangle className="h-6 w-6 text-yellow-600" />
-                  ) : (
-                    <Info className="h-6 w-6 text-red-600" />
-                  )}
-                  <div>
-                    <div className="font-medium">Overall Status</div>
-                    <div className="text-sm text-gray-600">
-                      {overallStats.percentage >= 80 ? 'Excellent' : overallStats.percentage >= 50 ? 'Good' : 'Needs Improvement'}
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="text-center">
-                  <div className="font-medium">High Priority Items</div>
-                  <div className="text-2xl font-bold text-red-600">
-                    {priorityStats.high.checked}/{priorityStats.high.total}
-                  </div>
-                  <div className="text-sm text-gray-600">Critical for compliance</div>
-                </div>
-                
-                <div className="text-center">
-                  <div className="font-medium">Completion Rate</div>
-                  <div className="text-2xl font-bold text-blue-600">
-                    {overallStats.percentage}%
-                  </div>
-                  <div className="text-sm text-gray-600">Overall progress</div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
