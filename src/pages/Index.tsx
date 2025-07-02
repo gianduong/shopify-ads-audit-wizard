@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { 
   Store, 
   ShoppingBag, 
@@ -21,10 +20,8 @@ import {
   CheckCircle,
   AlertTriangle,
   Info,
-  Lightbulb,
   DollarSign,
   Zap,
-  Eye,
   HelpCircle
 } from 'lucide-react';
 
@@ -47,473 +44,473 @@ const Index = () => {
     // Store Configuration
     { 
       id: 'store-1', 
-      title: 'Store không bị khóa bằng mật khẩu', 
-      description: 'Đảm bảo store ở chế độ công khai, không bị khóa password', 
+      title: 'Store is publicly accessible (no password protection)', 
+      description: 'Ensure your store is public and not behind a password wall', 
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Google cần truy cập website để kiểm tra nội dung và chính sách. Store bị khóa password sẽ khiến Google không thể crawl được.',
+      explanation: 'Google needs to crawl your website to verify compliance with their policies. A password-protected store prevents Google from accessing your content, which is essential for ad approval.',
       riskIfMissing: [
-        'Quảng cáo bị từ chối ngay lập tức',
-        'Google không thể xác minh tuân thủ chính sách',
-        'Conversion tracking hoàn toàn không hoạt động',
-        'Không thể chạy bất kỳ campaign nào'
+        'Ads rejected immediately - Google cannot verify your store content',
+        'All campaigns suspended until store becomes accessible',
+        'Conversion tracking completely broken - no data collection possible',
+        'Unable to use Google Shopping or Performance Max campaigns'
       ],
       benefitWhenComplete: [
-        'Quảng cáo được phê duyệt nhanh chóng',
-        'Google có thể xác minh tuân thủ chính sách',
-        'Conversion tracking hoạt động chính xác',
-        'Tối ưu hóa campaign hiệu quả'
+        'Fast ad approval process - Google can quickly verify compliance',
+        'All tracking pixels work properly for accurate data collection',
+        'Access to advanced campaign types like Shopping and Performance Max',
+        'Automated bidding strategies can optimize based on real user behavior'
       ]
     },
     { 
       id: 'store-2', 
-      title: 'Cài đặt Google Analytics 4 (GA4)', 
-      description: 'Theo dõi hành vi người dùng trên website', 
+      title: 'Google Analytics 4 (GA4) installed and configured', 
+      description: 'Track user behavior and website performance with GA4', 
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'GA4 cung cấp dữ liệu về hành trình khách hàng, giúp Google Ads tối ưu hóa targeting và bidding.',
+      explanation: 'GA4 provides crucial user behavior data that Google Ads uses for optimization. Example: It tracks which products users view most, helping Google show your ads to similar audiences.',
       riskIfMissing: [
-        'Không có dữ liệu về khách hàng',
-        'Không thể tối ưu hóa campaigns',
-        'Bỏ lỡ cơ hội remarketing',
-        'ROAS thấp do thiếu insights'
+        'No audience insights - you\'re advertising blind without knowing your customers',
+        'Cannot create remarketing audiences based on site behavior',
+        'Missing 30-50% of conversion attribution across devices',
+        'Smart Bidding strategies have limited data to optimize on'
       ],
       benefitWhenComplete: [
-        'Hiểu rõ hành vi khách hàng',
-        'Tối ưu hóa campaigns dựa trên data',
-        'Remarketing hiệu quả',
-        'Cải thiện ROAS thông qua insights'
+        'Build high-converting custom audiences (e.g., "viewed product but didn\'t buy")',
+        'Track complete customer journey from first visit to purchase',
+        'Improve ROAS by 25-40% through better audience targeting',
+        'Get detailed insights like "users from mobile convert 3x better on weekends"'
       ]
     },
     { 
       id: 'store-3', 
-      title: 'Kết nối Google Ads account', 
-      description: 'Tích hợp tài khoản Google Ads để kích hoạt conversion tracking', 
+      title: 'Google Ads account connected for conversion tracking', 
+      description: 'Link your Google Ads account to enable conversion measurement', 
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Kết nối này cho phép theo dõi conversions và sử dụng Smart Bidding để tối ưu hóa tự động.',
+      explanation: 'This connection allows Google to track when someone clicks your ad and makes a purchase. Example: Customer clicks your sneaker ad, buys shoes 2 days later - Google knows this conversion came from your ad.',
       riskIfMissing: [
-        'Không theo dõi được conversions',
-        'Lãng phí ngân sách quảng cáo',
-        'Không sử dụng được Smart Bidding',
-        'Không tối ưu hóa được campaigns'
+        'Cannot measure ROI - you won\'t know which ads actually drive sales',
+        'Wasting 40-60% of ad budget on non-converting keywords',
+        'Smart Bidding disabled - manual bidding only',
+        'No purchase data to optimize campaigns automatically'
       ],
       benefitWhenComplete: [
-        'Theo dõi conversions chính xác',
-        'Sử dụng Smart Bidding hiệu quả',
-        'Tối ưu hóa tự động',
-        'Đo lường ROI chính xác'
+        'See exactly which keywords and ads drive sales (e.g., "red sneakers" converts at $25 CPA)',
+        'Automated bidding increases conversions by 20-30% while reducing costs',
+        'Real-time optimization - Google automatically bids higher on profitable traffic',
+        'Clear ROI reporting - know you made $5 for every $1 spent on ads'
       ]
     },
     { 
       id: 'store-4', 
-      title: 'Cài đặt app đánh giá (Review)', 
-      description: 'Cài đặt ứng dụng như Judge.me, Loox để tăng độ tin cậy sản phẩm', 
+      title: 'Customer review system installed (Judge.me, Loox, etc.)', 
+      description: 'Install a review app to build social proof and trust', 
       category: 'store', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Reviews tạo social proof, tăng tỷ lệ chuyển đổi 15-30%. Khách hàng tin tưởng hơn khi thấy đánh giá tích cực.',
+      explanation: 'Reviews create social proof that significantly impacts buying decisions. Example: A product with 50+ reviews and 4.5 stars converts 30% better than one without reviews.',
       riskIfMissing: [
-        'Khách hàng thiếu tin tưởng',
-        'Tỷ lệ chuyển đổi thấp',
-        'Tỷ lệ bounce cao',
-        'Khách chọn đối thủ có reviews'
+        'Low conversion rates - customers don\'t trust products without reviews',
+        'Higher bounce rates - visitors leave when they see no social proof',
+        'Competitors with reviews will consistently outperform your ads',
+        'Higher cost per acquisition due to poor landing page experience'
       ],
       benefitWhenComplete: [
-        'Tăng conversion rate 15-30%',
-        'Khách hàng tin tưởng hơn',
-        'Quality Score tốt hơn',
-        'Lợi thế cạnh tranh'
+        'Increase conversion rates by 15-30% with visible star ratings',
+        'Lower bounce rates - customers stay longer when they see positive reviews',
+        'Higher Quality Scores leading to lower cost-per-click',
+        'Review rich snippets appear in Google Ads, improving click-through rates'
       ]
     },
     { 
       id: 'store-5', 
-      title: 'Có chương trình khuyến mãi/giảm giá', 
-      description: 'Mã giảm giá hoặc miễn phí vận chuyển để tăng tỷ lệ chuyển đổi', 
+      title: 'Promotional offers active (discounts, free shipping)', 
+      description: 'Have compelling offers to reduce cart abandonment', 
       category: 'store', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Khuyến mãi giúp giảm cart abandonment và thu hút khách hàng lần đầu mua hàng.',
+      explanation: 'Offers help overcome purchase hesitation, especially for first-time customers. Example: "Free shipping over $50" can increase average order value by 20%.',
       riskIfMissing: [
-        'Cart abandonment cao',
-        'Khó cạnh tranh về giá',
-        'Chi phí thu hút khách hàng cao',
-        'Khách망설 khi mua lần đầu'
+        'High cart abandonment rates (typically 70% without incentives)',
+        'Difficulty competing with competitors offering discounts',
+        'Higher customer acquisition costs - no incentive to try your brand',
+        'Lower conversion rates on cold traffic campaigns'
       ],
       benefitWhenComplete: [
-        'Giảm cart abandonment',
-        'Lợi thế cạnh tranh về giá',
-        'Thu hút khách hàng mới',
-        'Test được nhiều offers khác nhau'
+        'Reduce cart abandonment by 20-35% with strategic offers',
+        'Competitive advantage - match or beat competitor pricing',
+        'Higher lifetime value - first purchase with discount leads to repeat buyers',
+        'Better ad performance - offers mentioned in ad copy improve click-through rates'
       ]
     },
 
     // Product Compliance
     { 
       id: 'product-1', 
-      title: 'Không bán sản phẩm bị cấm', 
-      description: 'Kiểm tra với Google Policy để đảm bảo sản phẩm được phép quảng cáo', 
+      title: 'No prohibited products (check Google Ads policy)', 
+      description: 'Ensure all products comply with Google advertising policies', 
       category: 'product', 
       priority: 'high', 
       checked: false,
-      explanation: 'Google cấm quảng cáo nhiều loại sản phẩm như vũ khí, thuốc, sản phẩm người lớn. Vi phạm dẫn đến khóa account.',
+      explanation: 'Google has strict policies about what can be advertised. Examples of prohibited items: weapons, drugs, counterfeit goods, adult content, miracle health cures.',
       riskIfMissing: [
-        'Account bị khóa ngay lập tức',
-        'Mất toàn bộ quyền quảng cáo',
-        'Khó tạo account mới',
-        'Mất đầu tư quảng cáo'
+        'Immediate account suspension - no warning given for policy violations',
+        'All existing campaigns stopped immediately',
+        'Extremely difficult to appeal or create new accounts',
+        'Loss of all historical campaign data and optimization'
       ],
       benefitWhenComplete: [
-        'Account hoạt động bình thường',
-        'Quảng cáo tất cả sản phẩm hợp lệ',
-        'Bảo vệ đầu tư quảng cáo',
-        'Kinh doanh bền vững'
+        'Account remains in good standing with Google',
+        'Access to all advertising features and campaign types',
+        'No risk of sudden campaign interruptions',
+        'Build long-term advertising presence without compliance fears'
       ]
     },
     { 
       id: 'product-2', 
-      title: 'Tránh từ ngữ nhạy cảm', 
-      description: 'Ví dụ: "hiệu quả 100%", "an toàn tuyệt đối", "chữa khỏi hoàn toàn"', 
+      title: 'Avoid exaggerated claims ("100% effective", "miracle cure")', 
+      description: 'Use realistic, truthful language in product descriptions', 
       category: 'product', 
       priority: 'high', 
       checked: false,
-      explanation: 'Những từ ngữ hứa hẹn quá mức, đặc biệt cho sản phẩm sức khỏe, sẽ kích hoạt bộ lọc policy của Google.',
+      explanation: 'Google flags overly promotional or unrealistic claims. Instead of "Lose 20 pounds in 1 week guaranteed!", use "Supports healthy weight management as part of a balanced lifestyle".',
       riskIfMissing: [
-        'Quảng cáo bị từ chối liên tục',
-        'Account nhận cảnh báo policy',
-        'Hạn chế khả năng quảng cáo',
-        'Mất thời gian chỉnh sửa'
+        'Ads consistently rejected due to misleading claims',
+        'Account receives policy warnings that accumulate over time',
+        'Reduced ad delivery even for approved ads',
+        'Customer complaints and potential legal issues'
       ],
       benefitWhenComplete: [
-        'Quảng cáo được phê duyệt nhanh',
-        'Delivery ổn định',
-        'Không có cảnh báo policy',
-        'Khả năng quảng cáo đầy đủ'
+        'Ads approved quickly without policy reviews',
+        'Consistent ad delivery without interruptions',
+        'Build trust with realistic expectations - better customer satisfaction',
+        'No policy strikes against your account'
       ]
     },
     { 
       id: 'product-3', 
-      title: 'Không có reviews giả', 
-      description: 'Tránh đánh giá được tạo bởi app hoặc nội dung giả mạo', 
+      title: 'Authentic reviews only (no fake or generated reviews)', 
+      description: 'Ensure all customer reviews are genuine and earned', 
       category: 'product', 
       priority: 'high', 
       checked: false,
-      explanation: 'Google có công nghệ phát hiện reviews giả. Reviews thật sẽ mất thời gian nhưng tạo lòng tin bền vững.',
+      explanation: 'Google can detect fake reviews through pattern analysis. Real reviews take time but create genuine trust. Example: 20 authentic reviews over 6 months vs. 100 fake reviews added in one day.',
       riskIfMissing: [
-        'Account bị đình chỉ do vi phạm policy',
-        'Mất lòng tin khách hàng nếu bị phát hiện',
-        'Bị phạt từ các platform đánh giá',
-        'Danh tiếng thương hiệu bị ảnh hưởng'
+        'Google penalty - account suspension for misleading practices',
+        'Loss of customer trust if fake reviews are discovered',
+        'Review platforms may ban your products',
+        'Damage to brand reputation that\'s hard to recover from'
       ],
       benefitWhenComplete: [
-        'Social proof thật sự',
-        'Bảo vệ khỏi vi phạm policy',
-        'Lòng tin khách hàng lâu dài',
-        'Uy tín thương hiệu tốt'
+        'Genuine social proof that actually converts visitors',
+        'Protected from policy violations and penalties',
+        'Long-term customer trust and brand credibility',
+        'Reviews that accurately reflect product quality, reducing returns'
       ]
     },
 
     // Legal & UX Requirements  
     { 
       id: 'legal-1', 
-      title: 'Chính sách bảo mật (Privacy Policy)', 
-      description: 'Chính sách bảo mật bắt buộc phải có', 
+      title: 'Privacy Policy published and accessible', 
+      description: 'Required by law and Google Ads policy', 
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'Bắt buộc theo pháp luật nhiều quốc gia và điều kiện tiên quyết để Google Ads chấp thuận.',
+      explanation: 'A privacy policy explains how you collect and use customer data. Required by GDPR, CCPA, and Google Ads. Must be easily accessible from your homepage footer.',
       riskIfMissing: [
-        'Quảng cáo bị từ chối ngay lập tức',
-        'Vi phạm pháp luật, có thể bị phạt',
-        'Không thu thập được dữ liệu khách hàng',
-        'Mất lòng tin khách hàng'
+        'Immediate ad rejection - Google checks for privacy policy before approval',
+        'Legal compliance issues - fines up to 4% of revenue under GDPR',
+        'Cannot collect customer data legally',
+        'Payment processors may freeze accounts without proper legal pages'
       ],
       benefitWhenComplete: [
-        'Quảng cáo được phê duyệt',
-        'Tuân thủ pháp luật',
-        'Khách hàng tin tưởng',
-        'Thu thập dữ liệu hợp pháp'
+        'Ads approved without legal compliance issues',
+        'Full legal protection when collecting customer data',
+        'Customer trust through transparency about data usage',
+        'Meets requirements for all major advertising platforms'
       ]
     },
     { 
       id: 'legal-2', 
-      title: 'Điều khoản dịch vụ (Terms of Service)', 
-      description: 'Điều khoản và điều kiện sử dụng dịch vụ', 
+      title: 'Terms of Service clearly displayed', 
+      description: 'Legal terms and conditions for using your service', 
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'Bảo vệ pháp lý cho doanh nghiệp và thể hiện tính chuyên nghiệp với khách hàng.',
+      explanation: 'Terms of Service protect your business in disputes and show professionalism. Example: Clearly state return windows, warranty terms, and limitation of liability.',
       riskIfMissing: [
-        'Tranh chấp pháp lý với khách hàng',
-        'Không có bảo vệ trong xung đột',
-        'Quảng cáo có thể bị từ chối',
-        'Thiếu tính chuyên nghiệp'
+        'No legal protection in customer disputes',
+        'Appear unprofessional to potential customers',
+        'Some ad platforms may reject campaigns without Terms of Service',
+        'Unclear expectations lead to more customer service issues'
       ],
       benefitWhenComplete: [
-        'Bảo vệ pháp lý',
-        'Giảm tranh chấp',
-        'Thể hiện tính chuyên nghiệp',
-        'Tuân thủ Google Ads'
+        'Legal protection against unreasonable customer demands',
+        'Clear expectations reduce customer service workload',
+        'Professional appearance increases customer confidence',
+        'Compliance with e-commerce best practices and platform requirements'
       ]
     },
     { 
       id: 'legal-3', 
-      title: 'Chính sách đổi trả & hoàn tiền', 
-      description: 'Chính sách đổi trả và hoàn tiền rõ ràng', 
+      title: 'Clear return & refund policy', 
+      description: 'Transparent policy for returns and refunds', 
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'Giảm lo lắng của khách hàng khi mua hàng, đặc biệt quan trọng cho thương hiệu mới.',
+      explanation: 'Clear return policy reduces purchase anxiety. Example: "30-day returns, customer pays shipping" vs. unclear policies that make customers hesitate to buy.',
       riskIfMissing: [
-        'Không chạy được Google Shopping ads',
-        'Cart abandonment cao (lên đến 70%)',
-        'Tranh chấp với khách hàng',
-        'Vấn đề với payment processor'
+        'Cannot run Google Shopping campaigns - return policy required',
+        'High cart abandonment - 70% of customers check return policy before buying',
+        'More customer disputes due to unclear expectations',
+        'Payment processor holds on funds due to high chargeback risk'
       ],
       benefitWhenComplete: [
-        'Truy cập Google Shopping',
-        'Giảm cart abandonment',
-        'Ít tranh chấp hơn',
-        'Khách hàng tin tưởng mua hàng'
+        'Access to Google Shopping ads with high-intent traffic',
+        'Reduced cart abandonment - customers buy with confidence',
+        'Fewer customer service issues and disputes',
+        'Better relationship with payment processors'
       ]
     },
     { 
       id: 'legal-4', 
-      title: 'Thông tin vận chuyển & thanh toán rõ ràng', 
-      description: 'Phí vận chuyển và phương thức thanh toán minh bạch', 
+      title: 'Transparent shipping costs and payment methods', 
+      description: 'No hidden fees or surprises at checkout', 
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'Chi phí ẩn là nguyên nhân chính khiến khách hàng bỏ giỏ hàng và vi phạm policy Google.',
+      explanation: 'Hidden costs are the #1 reason for cart abandonment. Example: Show "Free shipping over $50" upfront rather than surprising customers with $15 shipping at checkout.',
       riskIfMissing: [
-        'Cart abandonment cao (lên đến 70%)',
-        'Vi phạm policy Google',
-        'Khách hàng phàn nàn',
-        'Danh tiếng bị ảnh hưởng'
+        'Cart abandonment rates up to 70% due to unexpected costs',
+        'Google Ads policy violations for misleading pricing',
+        'High customer complaint rates and negative reviews',
+        'Low Quality Scores leading to higher advertising costs'
       ],
       benefitWhenComplete: [
-        'Cart abandonment thấp',
-        'Tuân thủ policy',
-        'Khách hàng tin tưởng',
-        'Trải nghiệm mua hàng mượt mà'
+        'Significantly lower cart abandonment rates',
+        'Policy compliance with transparent pricing',
+        'Better customer experience leading to positive reviews',
+        'Higher Quality Scores and lower cost-per-click'
       ]
     },
     { 
       id: 'legal-5', 
-      title: 'Thông tin liên hệ đầy đủ', 
-      description: 'Email/số điện thoại thật, có thể liên lạc được', 
+      title: 'Complete contact information (real phone/email)', 
+      description: 'Provide genuine, reachable contact details', 
       category: 'legal', 
       priority: 'high', 
       checked: false,
-      explanation: 'Thông tin liên hệ thật là yêu cầu của Google Ads và tạo lòng tin với khách hàng.',
+      explanation: 'Real contact info builds trust and is required by Google. Example: Use business phone number and monitored email, not generic Gmail addresses.',
       riskIfMissing: [
-        'Quảng cáo bị từ chối',
-        'Khách hàng thiếu tin tưởng',
-        'Thiếu tính chuyên nghiệp',
-        'Không giải quyết được vấn đề khách hàng'
+        'Ad disapproval - Google requires verifiable contact information',
+        'Customers don\'t trust businesses they can\'t reach',
+        'Unprofessional appearance hurts conversion rates',
+        'Cannot resolve customer issues, leading to disputes and chargebacks'
       ],
       benefitWhenComplete: [
-        'Quảng cáo được phê duyệt',
-        'Khách hàng tin tưởng cao',
-        'Thể hiện tính chuyên nghiệp',
-        'Dịch vụ khách hàng hiệu quả'
+        'Ads approved without verification issues',
+        'Higher customer trust and conversion rates',
+        'Professional business appearance',
+        'Effective customer service reduces problems and improves satisfaction'
       ]
     },
 
     // Google Ads Settings
     { 
       id: 'ads-1', 
-      title: 'Chấp nhận Customer Data Terms (bắt buộc)', 
-      description: 'Yêu cầu bắt buộc cho tất cả advertisers', 
+      title: 'Accept Customer Data Terms (mandatory)', 
+      description: 'Required acceptance for all Google Ads advertisers', 
       category: 'ads', 
       priority: 'high', 
       checked: false,
-      explanation: 'Điều khoản bắt buộc của Google về cách xử lý dữ liệu khách hàng trong quảng cáo.',
+      explanation: 'Google\'s mandatory terms about how customer data is handled in advertising. This is a checkbox you must tick in your Google Ads account settings.',
       riskIfMissing: [
-        'Không thể chạy bất kỳ Google Ads nào',
-        'Account bị đình chỉ cho đến khi chấp nhận',
-        'Mất khả năng quảng cáo hoàn toàn'
+        'Cannot create or run any Google Ads campaigns',
+        'Account completely suspended until terms are accepted',
+        'No access to any Google Ads features or data'
       ],
       benefitWhenComplete: [
-        'Truy cập đầy đủ tính năng Google Ads',
-        'Xử lý dữ liệu tuân thủ',
-        'Account hoạt động bình thường'
+        'Full access to all Google Ads features and campaign types',
+        'Compliant handling of customer data',
+        'Account operates normally without restrictions'
       ]
     },
     { 
       id: 'ads-2', 
-      title: 'Bật View-through conversions', 
-      description: 'Ghi nhận conversions khi user không click nhưng quay lại sau', 
+      title: 'Enable View-through conversions tracking', 
+      description: 'Track conversions from users who saw but didn\'t click ads', 
       category: 'ads', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Nhiều khách hàng xem quảng cáo nhưng không click ngay, mà quay lại mua sau. Tính năng này theo dõi hành vi đó.',
+      explanation: 'Many customers see your ad, don\'t click immediately, but return later to purchase. Example: Someone sees your furniture ad on Monday, comes back Friday via Google search and buys.',
       riskIfMissing: [
-        'Báo cáo hiệu quả quảng cáo thấp hơn thực tế',
-        'Thiếu 20-30% attribution conversions',
-        'Tối ưu hóa không chính xác'
+        'Underreporting conversions by 20-30% - you\'re not seeing the full impact',
+        'Incorrect attribution leads to poor optimization decisions',
+        'Smart Bidding has incomplete data to work with'
       ],
       benefitWhenComplete: [
-        'Attribution conversion hoàn chỉnh',
-        'Hiểu rõ impact của quảng cáo',
-        'Tối ưu hóa campaigns tốt hơn'
+        'Complete picture of ad performance - see all conversions your ads influence',
+        'Better optimization decisions based on full attribution data',
+        'Smart Bidding works more effectively with complete conversion data'
       ]
     },
 
     // Events & Goals
     { 
       id: 'events-1', 
-      title: 'Thiết lập mục tiêu conversion cho campaign', 
-      description: 'Mục tiêu chính như mua hàng, leads...', 
+      title: 'Set up conversion goals for campaigns', 
+      description: 'Define what success looks like (purchases, leads, signups)', 
       category: 'events', 
       priority: 'high', 
       checked: false,
-      explanation: 'Mục tiêu rõ ràng giúp Google biết thành công là gì và tối ưu hóa campaigns theo đó.',
+      explanation: 'Conversion goals tell Google what actions are valuable to your business. Example: For e-commerce, primary goal is "Purchase", secondary might be "Add to Cart".',
       riskIfMissing: [
-        'Campaigns tối ưu hóa sai hướng',
-        'Lãng phí ngân sách',
-        'ROI kém',
-        'Không sử dụng được Smart Bidding'
+        'Campaigns optimize for clicks instead of actual business results',
+        'Waste budget on traffic that doesn\'t convert',
+        'Cannot use Smart Bidding strategies effectively',
+        'No clear measure of campaign success or ROI'
       ],
       benefitWhenComplete: [
-        'Campaigns tối ưu cho mục tiêu kinh doanh',
-        'Smart Bidding hoạt động',
-        'ROI tốt hơn',
-        'Targeting khách hàng chính xác'
+        'Campaigns automatically optimize for your business objectives',
+        'Smart Bidding increases conversions while reducing costs',
+        'Clear ROI measurement for every campaign and keyword',
+        'Budget allocated to highest-performing, profit-driving activities'
       ]
     },
 
     // Tracking Tools & Tag Manager
     { 
       id: 'tracking-1', 
-      title: 'Cài đặt Google Tag Manager (GTM)', 
-      description: 'Dễ dàng quản lý tracking từ nhiều platform', 
+      title: 'Google Tag Manager (GTM) installed', 
+      description: 'Manage all tracking codes from one central location', 
       category: 'tracking', 
       priority: 'high', 
       checked: false,
-      explanation: 'GTM giúp quản lý tất cả tracking codes một cách dễ dàng mà không cần developer.',
+      explanation: 'GTM simplifies tracking management. Instead of editing website code for each new tracking pixel, you manage everything through GTM\'s interface.',
       riskIfMissing: [
-        'Khó triển khai tracking',
-        'Bỏ lỡ cơ hội theo dõi',
-        'Phụ thuộc vào developer cho mọi thay đổi'
+        'Difficult to implement new tracking - requires developer for every change',
+        'Miss opportunities to track important user actions',
+        'Slower deployment of new marketing tools and pixels'
       ],
       benefitWhenComplete: [
-        'Quản lý tracking dễ dàng',
-        'Thu thập dữ liệu toàn diện',
-        'Triển khai tracking mới nhanh chóng'
+        'Easy tracking management without technical skills needed',
+        'Quick deployment of new tracking for different marketing channels',
+        'Comprehensive data collection for better optimization decisions'
       ]
     },
     { 
       id: 'tracking-2', 
-      title: 'Google Ads Remarketing Tag', 
-      description: 'Để retarget khách hàng', 
+      title: 'Google Ads Remarketing Tag active', 
+      description: 'Retarget website visitors who didn\'t convert', 
       category: 'tracking', 
       priority: 'high', 
       checked: false,
-      explanation: 'Remarketing cho phép tiếp cận lại những visitor chưa mua hàng với chi phí thấp và conversion rate cao.',
+      explanation: 'Remarketing targets people who visited your site but didn\'t buy. Example: Show ads for specific products someone viewed to bring them back to complete the purchase.',
       riskIfMissing: [
-        'Không thể retarget visitors',
-        'Bỏ lỡ cơ hội ROI cao',
-        'Chỉ quảng cáo cold traffic',
-        'Chi phí thu hút khách hàng cao'
+        'Cannot retarget 95% of visitors who don\'t buy on first visit',
+        'Missing high-ROI remarketing opportunities (typically 3-5x better than cold traffic)',
+        'Limited to expensive cold traffic acquisition only',
+        'No way to recover abandoned cart visitors'
       ],
       benefitWhenComplete: [
-        'Campaigns remarketing conversion cao',
-        'Chi phí thu hút khách hàng thấp hơn',
-        'ROI tốt hơn',
-        'Phục hồi abandoned visitors'
+        'High-converting remarketing campaigns with 3-5x better ROI',
+        'Recover abandoned cart visitors with targeted product ads',
+        'Lower overall customer acquisition costs',
+        'Build comprehensive marketing funnel from awareness to purchase'
       ]
     },
 
     // Feed & Merchant Center
     { 
       id: 'feed-1', 
-      title: 'Tạo Google Merchant Feed', 
-      description: 'Qua app hoặc API', 
+      title: 'Google Merchant Center feed created', 
+      description: 'Product feed for Shopping and Performance Max campaigns', 
       category: 'feed', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Merchant Center feed cho phép chạy Shopping ads và Performance Max, thường có ROI tốt cho e-commerce.',
+      explanation: 'Merchant Center feed contains your product data for Google Shopping. Example: Product titles, prices, images, and availability sync automatically with your store.',
       riskIfMissing: [
-        'Không chạy được Shopping ads',
-        'Bỏ lỡ traffic có intent cao',
-        'Chỉ giới hạn ở search ads',
-        'Giảm khả năng hiển thị'
+        'Cannot run Google Shopping campaigns - missing high-intent traffic',
+        'No access to Performance Max campaigns for e-commerce',
+        'Limited to text ads only - missing visual product showcases',
+        'Competitors with Shopping ads will dominate product searches'
       ],
       benefitWhenComplete: [
-        'Truy cập Shopping ads',
-        'Thu hút traffic có intent cao',
-        'Tăng khả năng hiển thị sản phẩm',
-        'ROI tốt từ Shopping campaigns'
+        'Access to Google Shopping ads with high purchase intent',
+        'Performance Max campaigns typically deliver 20-30% more conversions',
+        'Visual product ads that stand out in search results',
+        'Compete effectively for product-specific searches'
       ]
     },
 
     // Creative & Ad Content
     { 
       id: 'creative-1', 
-      title: 'Không cam kết gian lận', 
-      description: 'Ví dụ: "đảm bảo giảm 10kg sau 1 tuần"', 
+      title: 'No unrealistic promises or guarantees', 
+      description: 'Avoid claims like "guaranteed 10kg weight loss in 1 week"', 
       category: 'creative', 
       priority: 'high', 
       checked: false,
-      explanation: 'Cam kết không thực tế vi phạm policy Google và có thể dẫn đến vấn đề pháp lý.',
+      explanation: 'Unrealistic promises violate Google policies and create unhappy customers. Example: Use "supports healthy weight management" instead of "guaranteed 10kg loss in 7 days".',
       riskIfMissing: [
-        'Account bị đình chỉ ngay lập tức',
-        'Vấn đề pháp lý',
-        'Mất uy tín thương hiệu',
-        'Mất lòng tin khách hàng'
+        'Immediate account suspension for misleading advertising',
+        'Legal liability for false advertising claims',
+        'Brand reputation damage when promises aren\'t met',
+        'High refund rates and customer complaints'
       ],
       benefitWhenComplete: [
-        'Account hoạt động bình thường',
-        'Bảo vệ pháp lý',
-        'Uy tín thương hiệu thật sự',
-        'Lòng tin khách hàng lâu dài'
+        'Account stays compliant with advertising policies',
+        'Legal protection from false advertising claims',
+        'Realistic customer expectations lead to higher satisfaction',
+        'Long-term brand trust and customer loyalty'
       ]
     },
     { 
       id: 'creative-2', 
-      title: 'Không dùng hình ảnh before-after', 
-      description: 'Vi phạm policy về minh họa gây hiểu lầm', 
+      title: 'No before/after transformation images', 
+      description: 'Avoid misleading visual comparisons', 
       category: 'creative', 
       priority: 'high', 
       checked: false,
-      explanation: 'Hình ảnh trước-sau được Google coi là gây hiểu lầm, đặc biệt cho sản phẩm sức khỏe và làm đẹp.',
+      explanation: 'Before/after images are considered misleading by Google, especially for health/beauty products. Focus on product benefits and features instead.',
       riskIfMissing: [
-        'Vi phạm policy ngay lập tức',
-        'Account bị đình chỉ',
-        'Mất quyền quảng cáo',
-        'Khách hàng thất vọng về kết quả'
+        'Immediate policy violation and account suspension',
+        'All campaigns using these images stopped immediately',
+        'Misleading customers leads to disappointment and refunds',
+        'Difficulty appealing policy violations'
       ],
       benefitWhenComplete: [
-        'Tuân thủ policy',
-        'Bảo vệ quyền quảng cáo',
-        'Kỳ vọng khách hàng thực tế',
-        'Lòng tin thật sự'
+        'Policy-compliant ads that won\'t be rejected',
+        'Sustainable advertising approach without policy risks',
+        'Realistic customer expectations improve satisfaction',
+        'Focus on genuine product benefits builds trust'
       ]
     },
 
     // Analytics & Attribution
     { 
       id: 'analytics-1', 
-      title: 'Bật Google Signals trong GA4', 
-      description: 'Thu thập dữ liệu cross-device', 
+      title: 'Google Signals enabled in GA4', 
+      description: 'Cross-device user tracking and insights', 
       category: 'analytics', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Google Signals cung cấp insights về hành vi người dùng trên nhiều thiết bị, giúp hiểu customer journey hoàn chỉnh.',
+      explanation: 'Google Signals tracks users across devices (phone, tablet, desktop) to give complete customer journey insights. Example: See that customers research on mobile but buy on desktop.',
       riskIfMissing: [
-        'Hiểu không đầy đủ customer journey',
-        'Attribution cross-device kém',
-        'Bỏ lỡ cơ hội targeting'
+        'Incomplete customer journey understanding - missing cross-device behavior',
+        'Attribution errors - not connecting mobile research to desktop purchases',
+        'Limited audience insights for targeting optimization'
       ],
       benefitWhenComplete: [
-        'Insights cross-device hoàn chỉnh',
-        'Attribution chính xác',
-        'Targeting khán giả tốt hơn',
-        'Tối ưu hóa campaigns hiệu quả'
+        'Complete cross-device customer journey mapping',
+        'Accurate attribution across all devices and touchpoints',
+        'Better audience targeting based on complete behavior data',
+        'Improved campaign optimization with fuller customer insights'
       ]
     },
   ];
@@ -595,24 +592,24 @@ const Index = () => {
             Google Ads Compliance Checker
           </h1>
           <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-            Đảm bảo Shopify store của bạn tuân thủ đầy đủ để chạy Google Ads hiệu quả và tránh bị từ chối quảng cáo
+            Ensure your Shopify store meets all requirements to run Google Ads effectively and avoid ad rejections
           </p>
           
           {/* Compact Benefits */}
           <div className="grid md:grid-cols-3 gap-4 mb-6 max-w-4xl mx-auto">
             <div className="p-4 bg-red-50 rounded-lg border border-red-200">
               <AlertTriangle className="h-5 w-5 text-red-600 mx-auto mb-2" />
-              <div className="text-sm font-medium text-red-800">Tránh bị từ chối ads</div>
+              <div className="text-sm font-medium text-red-800">Avoid ad rejections</div>
             </div>
             
             <div className="p-4 bg-green-50 rounded-lg border border-green-200">
               <DollarSign className="h-5 w-5 text-green-600 mx-auto mb-2" />
-              <div className="text-sm font-medium text-green-800">Tối ưu ROI & hiệu suất</div>
+              <div className="text-sm font-medium text-green-800">Optimize ROI & performance</div>
             </div>
             
             <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
               <Zap className="h-5 w-5 text-blue-600 mx-auto mb-2" />
-              <div className="text-sm font-medium text-blue-800">Mở khóa tính năng nâng cao</div>
+              <div className="text-sm font-medium text-blue-800">Unlock advanced features</div>
             </div>
           </div>
           
@@ -621,12 +618,12 @@ const Index = () => {
             <CardContent className="p-4">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-xl font-bold">{overallStats.percentage}%</span>
-                <span className="text-sm text-gray-600">{overallStats.checkedCount}/{overallStats.totalCount} hoàn thành</span>
+                <span className="text-sm text-gray-600">{overallStats.checkedCount}/{overallStats.totalCount} completed</span>
               </div>
               <Progress value={overallStats.percentage} className="h-2 mb-3" />
               
               <div className="flex gap-2 justify-center">
-                <Button onClick={checkAll} size="sm">Chọn tất cả</Button>
+                <Button onClick={checkAll} size="sm">Check All</Button>
                 <Button onClick={resetAll} variant="outline" size="sm">Reset</Button>
               </div>
             </CardContent>
@@ -709,7 +706,7 @@ const Index = () => {
                                   variant={item.priority === 'high' ? 'destructive' : item.priority === 'medium' ? 'secondary' : 'outline'}
                                   className="text-xs px-1 py-0"
                                 >
-                                  {item.priority === 'high' ? 'Cao' : item.priority === 'medium' ? 'TB' : 'Thấp'}
+                                  {item.priority === 'high' ? 'High' : item.priority === 'medium' ? 'Med' : 'Low'}
                                 </Badge>
                               </div>
                               <p className="text-xs text-gray-600 line-clamp-2">
@@ -739,10 +736,10 @@ const Index = () => {
                                     <div className="p-4 bg-blue-50 rounded-lg">
                                       <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                                         <Info className="h-4 w-4" />
-                                        Tại sao quan trọng:
+                                        Why this matters:
                                       </h4>
                                       <p className="text-blue-800">
-                                        {item.explanation || 'Yêu cầu này giúp đảm bảo campaigns Google Ads chạy mượt mà và tuân thủ chính sách.'}
+                                        {item.explanation || 'This requirement helps ensure your Google Ads campaigns run smoothly and comply with policies.'}
                                       </p>
                                     </div>
                                     
@@ -750,12 +747,12 @@ const Index = () => {
                                       <div className="p-4 bg-red-50 rounded-lg">
                                         <h5 className="font-semibold text-red-800 mb-3 flex items-center gap-2">
                                           <AlertTriangle className="h-4 w-4" />
-                                          Rủi ro nếu thiếu:
+                                          Risks if missing:
                                         </h5>
-                                        <ul className="space-y-1">
-                                          {(item.riskIfMissing || ['Có thể dẫn đến vi phạm policy hoặc giảm hiệu suất campaign']).map((risk, index) => (
+                                        <ul className="space-y-2">
+                                          {(item.riskIfMissing || ['May lead to policy violations or reduced campaign performance']).map((risk, index) => (
                                             <li key={index} className="text-sm text-red-700 flex items-start gap-2">
-                                              <span className="text-red-500 mt-1">•</span>
+                                              <span className="text-red-500 mt-1 text-xs">•</span>
                                               <span>{risk}</span>
                                             </li>
                                           ))}
@@ -765,12 +762,12 @@ const Index = () => {
                                       <div className="p-4 bg-green-50 rounded-lg">
                                         <h5 className="font-semibold text-green-800 mb-3 flex items-center gap-2">
                                           <CheckCircle className="h-4 w-4" />
-                                          Lợi ích khi hoàn thành:
+                                          Benefits when complete:
                                         </h5>
-                                        <ul className="space-y-1">
-                                          {(item.benefitWhenComplete || ['Cải thiện hiệu suất campaign và đảm bảo tuân thủ']).map((benefit, index) => (
+                                        <ul className="space-y-2">
+                                          {(item.benefitWhenComplete || ['Improves campaign performance and ensures compliance']).map((benefit, index) => (
                                             <li key={index} className="text-sm text-green-700 flex items-start gap-2">
-                                              <span className="text-green-500 mt-1">•</span>
+                                              <span className="text-green-500 mt-1 text-xs">•</span>
                                               <span>{benefit}</span>
                                             </li>
                                           ))}
