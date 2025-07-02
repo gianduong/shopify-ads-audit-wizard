@@ -49,18 +49,42 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'Google needs to crawl your website to verify compliance with their policies. A password-protected store prevents Google from accessing your content, which is essential for ad approval.',
+      explanation: `<div>
+        <p><strong>Google's crawlers need to access your website to verify policy compliance before approving your ads.</strong></p>
+        <br/>
+        <p>When your store is password-protected, Google cannot:</p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li>Verify that your products comply with advertising policies</li>
+          <li>Check your website's user experience and loading speed</li>
+          <li>Validate that your business information is legitimate</li>
+          <li>Ensure your checkout process works properly</li>
+        </ul>
+        <br/>
+        <p><strong>Real-world example:</strong></p>
+        <p class="bg-gray-100 p-3 rounded mt-2">
+          Store A launches with password protection during development. All Google Ads get rejected immediately with "Website not accessible" error. 
+          After removing the password, ads are approved within 24 hours and start generating $2,000 in daily revenue.
+        </p>
+        <br/>
+        <p><strong>Technical requirements:</strong></p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li>Remove Shopify password page completely</li>
+          <li>Ensure all product pages load without login</li>
+          <li>Make checkout accessible to new visitors</li>
+          <li>Test your site in incognito mode to verify accessibility</li>
+        </ul>
+      </div>`,
       riskIfMissing: [
-        'Ads rejected immediately - Google cannot verify your store content',
+        'Immediate ad rejection - Google cannot verify store content',
         'All campaigns suspended until store becomes accessible',
-        'Conversion tracking completely broken - no data collection possible',
-        'Unable to use Google Shopping or Performance Max campaigns'
+        'Conversion tracking completely broken',
+        'Unable to use Google Shopping campaigns'
       ],
       benefitWhenComplete: [
-        'Fast ad approval process - Google can quickly verify compliance',
-        'All tracking pixels work properly for accurate data collection',
-        'Access to advanced campaign types like Shopping and Performance Max',
-        'Automated bidding strategies can optimize based on real user behavior'
+        'Fast ad approval process (24-48 hours instead of weeks)',
+        'All tracking pixels work properly for data collection',
+        'Access to Shopping and Performance Max campaigns',
+        'Automated bidding strategies can optimize effectively'
       ]
     },
     { 
@@ -70,60 +94,153 @@ const Index = () => {
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'GA4 provides crucial user behavior data that Google Ads uses for optimization. Example: It tracks which products users view most, helping Google show your ads to similar audiences.',
+      explanation: `<div>
+        <p><strong>GA4 is the foundation of all successful Google Ads campaigns.</strong> It provides the behavioral data that Google's AI uses to find your best customers.</p>
+        <br/>
+        <p>Here's what GA4 tracks that directly improves your ads:</p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li><strong>User journeys:</strong> How customers navigate from first visit to purchase</li>
+          <li><strong>Product interests:</strong> Which products generate the most engagement</li>
+          <li><strong>Conversion paths:</strong> The typical steps before someone buys</li>
+          <li><strong>Audience segments:</strong> Different customer types and their behaviors</li>
+        </ul>
+        <br/>
+        <p><strong>Real-world example:</strong></p>
+        <p class="bg-gray-100 p-3 rounded mt-2">
+          An electronics store discovers through GA4 that 70% of customers view product videos before purchasing. 
+          They create remarketing audiences targeting "video viewers" and achieve 250% higher conversion rates 
+          compared to general website visitors.
+        </p>
+        <br/>
+        <p><strong>Setup checklist:</strong></p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li>Install GA4 tracking code on all pages</li>
+          <li>Enable Enhanced Ecommerce tracking</li>
+          <li>Set up conversion events (purchase, add to cart, begin checkout)</li>
+          <li>Link GA4 to your Google Ads account</li>
+          <li>Verify data is flowing correctly (wait 24-48 hours)</li>
+        </ul>
+      </div>`,
       riskIfMissing: [
-        'No audience insights - you\'re advertising blind without knowing your customers',
-        'Cannot create remarketing audiences based on site behavior',
-        'Missing 30-50% of conversion attribution across devices',
-        'Smart Bidding strategies have limited data to optimize on'
+        'No audience insights - advertising blind without customer data',
+        'Cannot create remarketing lists based on behavior',
+        'Missing 30-50% of conversion attribution',
+        'Smart Bidding has insufficient data to optimize'
       ],
       benefitWhenComplete: [
-        'Build high-converting custom audiences (e.g., "viewed product but didn\'t buy")',
-        'Track complete customer journey from first visit to purchase',
-        'Improve ROAS by 25-40% through better audience targeting',
-        'Get detailed insights like "users from mobile convert 3x better on weekends"'
+        'Build high-converting custom audiences (cart abandoners, product viewers)',
+        'Track complete customer journey across devices',
+        'Improve ROAS by 25-40% through better targeting',
+        'Get insights like "mobile users convert 3x better on weekends"'
       ]
     },
     { 
       id: 'store-3', 
-      title: 'Google Ads account connected for conversion tracking', 
-      description: 'Link your Google Ads account to enable conversion measurement', 
+      title: 'Google Ads conversion tracking installed', 
+      description: 'Track which ads and keywords drive actual sales', 
       category: 'store', 
       priority: 'high', 
       checked: false,
-      explanation: 'This connection allows Google to track when someone clicks your ad and makes a purchase. Example: Customer clicks your sneaker ad, buys shoes 2 days later - Google knows this conversion came from your ad.',
+      explanation: `<div>
+        <p><strong>Conversion tracking is what transforms Google Ads from an expense into a profit center.</strong> Without it, you're flying blind.</p>
+        <br/>
+        <p>Here's exactly what conversion tracking does:</p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li><strong>Attribution:</strong> Connects each sale back to the specific ad and keyword that drove it</li>
+          <li><strong>Optimization:</strong> Tells Google's AI which traffic converts so it can find more</li>
+          <li><strong>ROI measurement:</strong> Shows exact profit/loss for every dollar spent</li>
+          <li><strong>Automated bidding:</strong> Enables Google to bid higher on profitable traffic</li>
+        </ul>
+        <br/>
+        <p><strong>Real-world example:</strong></p>
+        <p class="bg-gray-100 p-3 rounded mt-2">
+          A clothing store installs conversion tracking and discovers that the keyword "summer dresses" 
+          costs $2 per click but generates $45 average order value. They increase bids on this keyword 
+          and decrease bids on "clothing" (which has low conversion rates), improving overall ROAS from 2.1x to 4.8x.
+        </p>
+        <br/>
+        <p><strong>What you need to track:</strong></p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li><strong>Primary:</strong> Purchase/Sale completion with value</li>
+          <li><strong>Secondary:</strong> Add to cart, begin checkout, sign up</li>
+          <li><strong>Micro:</strong> Page views, time on site (for content sites)</li>
+        </ul>
+        <br/>
+        <p><strong>Setup methods:</strong></p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li>Google Tag Manager (recommended for flexibility)</li>
+          <li>Direct Google Ads tag installation</li>
+          <li>Google Analytics 4 import (for basic tracking)</li>
+          <li>Shopify/WooCommerce native integrations</li>
+        </ul>
+      </div>`,
       riskIfMissing: [
-        'Cannot measure ROI - you won\'t know which ads actually drive sales',
-        'Wasting 40-60% of ad budget on non-converting keywords',
-        'Smart Bidding disabled - manual bidding only',
-        'No purchase data to optimize campaigns automatically'
+        'Cannot measure ROI - no idea which ads actually drive sales',
+        'Waste 40-60% of budget on non-converting keywords',
+        'Smart Bidding disabled - stuck with manual bidding only',
+        'No data to optimize campaigns automatically'
       ],
       benefitWhenComplete: [
-        'See exactly which keywords and ads drive sales (e.g., "red sneakers" converts at $25 CPA)',
-        'Automated bidding increases conversions by 20-30% while reducing costs',
-        'Real-time optimization - Google automatically bids higher on profitable traffic',
-        'Clear ROI reporting - know you made $5 for every $1 spent on ads'
+        'See exactly which keywords drive sales (e.g., "red sneakers" = $25 CPA)',
+        'Automated bidding increases conversions by 20-30%',
+        'Real-time optimization - Google bids higher on profitable traffic',
+        'Clear ROI reporting - know you made $5 for every $1 spent'
       ]
     },
     { 
       id: 'store-4', 
       title: 'Customer review system installed (Judge.me, Loox, etc.)', 
-      description: 'Install a review app to build social proof and trust', 
+      description: 'Build social proof and trust with customer reviews', 
       category: 'store', 
       priority: 'medium', 
       checked: false,
-      explanation: 'Reviews create social proof that significantly impacts buying decisions. Example: A product with 50+ reviews and 4.5 stars converts 30% better than one without reviews.',
+      explanation: `<div>
+        <p><strong>Reviews are the digital equivalent of word-of-mouth marketing.</strong> They provide social proof that dramatically impacts buying decisions, especially for online stores where customers can't physically examine products.</p>
+        <br/>
+        <p>Psychology behind reviews:</p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li><strong>Social proof:</strong> People follow what others do (if 100 people bought this, it must be good)</li>
+          <li><strong>Risk reduction:</strong> Reviews help customers feel confident about their purchase</li>
+          <li><strong>Detailed feedback:</strong> Reviews answer questions that product descriptions miss</li>
+          <li><strong>Trust building:</strong> Authentic reviews make your brand feel legitimate</li>
+        </ul>
+        <br/>
+        <p><strong>Real-world impact example:</strong></p>
+        <p class="bg-gray-100 p-3 rounded mt-2">
+          A fitness equipment store adds review system to their best-selling treadmill. Within 3 months, 
+          they collect 67 reviews averaging 4.3 stars. The product page conversion rate increases from 
+          2.1% to 3.4% (+62% improvement), and Google Ads performance improves due to better landing page experience.
+        </p>
+        <br/>
+        <p><strong>Review system features to look for:</strong></p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li><strong>Photo reviews:</strong> Customer photos build more trust than text alone</li>
+          <li><strong>Review widgets:</strong> Display reviews prominently on product pages</li>
+          <li><strong>Email automation:</strong> Automatically request reviews post-purchase</li>
+          <li><strong>Review syndication:</strong> Share reviews to Google, Facebook, etc.</li>
+          <li><strong>Q&A features:</strong> Let customers ask questions about products</li>
+        </ul>
+        <br/>
+        <p><strong>Best practices for collecting reviews:</strong></p>
+        <ul class="list-disc ml-6 mt-2 space-y-1">
+          <li>Send review requests 7-14 days after delivery</li>
+          <li>Offer small incentives (5% discount on next order)</li>
+          <li>Make leaving reviews extremely easy (1-click process)</li>
+          <li>Respond to all reviews, especially negative ones</li>
+          <li>Feature customer photos prominently</li>
+        </ul>
+      </div>`,
       riskIfMissing: [
-        'Low conversion rates - customers don\'t trust products without reviews',
-        'Higher bounce rates - visitors leave when they see no social proof',
-        'Competitors with reviews will consistently outperform your ads',
+        'Low conversion rates - customers hesitate without social proof',
+        'Higher bounce rates - visitors leave when they see no reviews',
+        'Competitors with reviews consistently outperform your ads',
         'Higher cost per acquisition due to poor landing page experience'
       ],
       benefitWhenComplete: [
         'Increase conversion rates by 15-30% with visible star ratings',
-        'Lower bounce rates - customers stay longer when they see positive reviews',
+        'Lower bounce rates - customers stay longer with social proof',
         'Higher Quality Scores leading to lower cost-per-click',
-        'Review rich snippets appear in Google Ads, improving click-through rates'
+        'Review rich snippets appear in Google Ads improving CTR'
       ]
     },
     { 
@@ -725,7 +842,7 @@ const Index = () => {
                                     <HelpCircle className="h-3 w-3" />
                                   </Button>
                                 </DialogTrigger>
-                                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
                                   <DialogHeader>
                                     <DialogTitle className="flex items-center gap-2 text-lg">
                                       <HelpCircle className="h-5 w-5 text-blue-600" />
@@ -734,13 +851,16 @@ const Index = () => {
                                   </DialogHeader>
                                   <div className="space-y-4">
                                     <div className="p-4 bg-blue-50 rounded-lg">
-                                      <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
+                                      <h4 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
                                         <Info className="h-4 w-4" />
                                         Why this matters:
                                       </h4>
-                                      <p className="text-blue-800">
-                                        {item.explanation || 'This requirement helps ensure your Google Ads campaigns run smoothly and comply with policies.'}
-                                      </p>
+                                      <div 
+                                        className="text-blue-800 prose prose-sm max-w-none"
+                                        dangerouslySetInnerHTML={{ 
+                                          __html: item.explanation || 'This requirement helps ensure your Google Ads campaigns run smoothly and comply with policies.' 
+                                        }}
+                                      />
                                     </div>
                                     
                                     <div className="grid grid-cols-1 gap-4">
