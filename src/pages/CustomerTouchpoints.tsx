@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import AccessRequestForm from '@/components/AccessRequestForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -225,6 +225,7 @@ const touchpointData: TouchpointItem[] = [
 export default function CustomerTouchpoints() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [hasAccess, setHasAccess] = useState(false);
 
   const categories = [
     { id: 'all', label: 'Tất Cả', icon: Users },
@@ -256,6 +257,15 @@ export default function CustomerTouchpoints() {
   const handleItemCheck = (id: string, checked: boolean) => {
     setCheckedItems(prev => ({ ...prev, [id]: checked }));
   };
+
+  const handleAccessGranted = () => {
+    setHasAccess(true);
+  };
+
+  // Show access request form if user doesn't have access
+  if (!hasAccess) {
+    return <AccessRequestForm onRequestSubmitted={handleAccessGranted} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
