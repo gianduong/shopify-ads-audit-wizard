@@ -1632,33 +1632,23 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        {/* Simplified Header */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">
-            Google Ads Compliance Checker
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Google Ads Compliance Checklist
           </h1>
-          <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-            Ensure your Shopify store meets all requirements to run Google Ads effectively and avoid ad rejections
+          <p className="text-xl text-gray-600 mb-6">
+            Ensure your advertising campaigns meet all Google policies and requirements
           </p>
           
-          {/* Compact Benefits */}
-          <div className="grid md:grid-cols-3 gap-4 mb-6 max-w-4xl mx-auto">
-            <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-              <AlertTriangle className="h-5 w-5 text-red-600 mx-auto mb-2" />
-              <div className="text-sm font-medium text-red-800">Avoid ad rejections</div>
-            </div>
-            
-            <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-              <DollarSign className="h-5 w-5 text-green-600 mx-auto mb-2" />
-              <div className="text-sm font-medium text-green-800">Optimize ROI & performance</div>
-            </div>
-            
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <Zap className="h-5 w-5 text-blue-600 mx-auto mb-2" />
-              <div className="text-sm font-medium text-blue-800">Unlock advanced features</div>
-            </div>
+          <div className="flex justify-center space-x-4 mb-6">
+            <a 
+              href="/touchpoints" 
+              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
+            >
+              🎯 Customer Touchpoint Strategy
+            </a>
           </div>
           
           {/* Compact Progress */}
